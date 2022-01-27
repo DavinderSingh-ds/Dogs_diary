@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dog_app/model/dog_table.dart';
+import 'package:dog_app/model/signup_table.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -8,6 +9,14 @@ import 'package:sqflite/sqflite.dart';
 class Databaseprovider {
   static final _databaseName = "dogdatabase.db";
   static final _databaseVersion = 1;
+
+  //Fields for Signup Table
+  static final signUpTable = 'authentication';
+  static final userId = 'id';
+  static final userName = 'name';
+  static final userEmail = 'email';
+  static final userPassword = 'passwrd';
+  static final cnfPassword = 'cnfpsswrd';
 
   //Fields for Dog Table
   static final dogTable = 'transactions';
@@ -51,10 +60,18 @@ class Databaseprovider {
         "$dogBreed TEXT ,"
         "$dogColor TEXT "
         ")");
+
+    await db.execute("CREATE TABLE $signUpTable("
+        "$userId INTEGER PRIMARY KEY AUTOINCREMENT ,"
+        "$userName TEXT ,"
+        "$userEmail TEXT ,"
+        "$userPassword TEXT ,"
+        "$cnfPassword TEXT "
+        ")");
   }
 
 //TRANSACTION TABLE ALL CRUD OPERATIONS
-  //For inserting the data in the database of Transaction
+  //For inserting the data in the database of dogTable
   addTransaction(DogModel transactionModel) async {
     Database newdb = await instance.database;
     return await newdb.insert(
@@ -63,7 +80,25 @@ class Databaseprovider {
     );
   }
 
-  // Fetch all the data from the Transaction Table to show in the Transaction Page
+  //For inserting the data in the database of signUpTable
+  addSignUpdetail(signUpModel signupdetailModel) async {
+    Database adddetaildb = await instance.database;
+    return await adddetaildb.insert(
+      '$signUpTable',
+      signupdetailModel.todatabaseJson(),
+    );
+  }
+
+  // Fetch all the data from the signUp_Table to use or show in the signup screep Page
+  Future<List<signUpModel>> getAllsignUpdetail() async {
+    final signupdb = await instance.database;
+    final List<Map<String, Object?>> signUpallData =
+        await signupdb.query('$signUpTable');
+    print('SignupDetail is :  $signUpTable');
+    return signUpallData.map((e) => signUpModel.fromdatabaseJson(e)).toList();
+  }
+
+  // Fetch all the data from the dog_Table to show in the dashboard Page
   Future<List<DogModel>> getAllTransactions() async {
     final db = await instance.database;
     final List<Map<String, Object?>> newallData = await db.query('$dogTable');

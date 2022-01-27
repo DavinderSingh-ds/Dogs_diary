@@ -1,10 +1,16 @@
 import 'package:dog_app/authentication.dart/inputTextWidget.dart';
 import 'package:dog_app/authentication.dart/loginScreen.dart';
-import 'package:dog_app/ui_designs/myhomepage.dart';
+import 'package:dog_app/database/database.dart';
+import 'package:dog_app/model/signup_table.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
-  SignUpScreen() : super();
+  SignUpScreen({
+    Key? key,
+    this.newsignUpModel,
+  }) : super(key: key);
+
+  final signUpModel? newsignUpModel;
 
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -15,6 +21,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+
+  final _databaseProviderr = Databaseprovider.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -201,16 +216,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Container(
                     height: 55.0,
                     child: ElevatedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  MyHomePage(title: 'Dogs_diary'),
-                            ),
+                      // onPressed: () async {
+                      //   if (_formKey.currentState!.validate()) {
+                      //     Navigator.of(context).push(
+                      //       MaterialPageRoute(
+                      //         builder: (context) =>
+                      //             MyHomePage(title: 'Dogs_diary'),
+                      //       ),
+                      //     );
+                      //   }
+                      // },
+
+                      onPressed: () {
+                        final FormState? formm = _formKey.currentState;
+                        if (formm!.validate()) {
+                          final newexpensess = signUpModel(
+                            userEmail: _emailController.text.toString(),
+                            userPassword: _pass.text.toString(),
+                            confirmPassword: _confirmPass.text.toString(),
+                            userName: '',
                           );
+
+                          if (_confirmPass.text.toString().isNotEmpty) {
+                            var passId = _databaseProviderr
+                                .addSignUpdetail(newexpensess);
+                            print('${passId.toString()}');
+                          }
+
+                          Navigator.pop(context);
                         }
                       },
+
                       // onPressed: () =>
 
                       // )),

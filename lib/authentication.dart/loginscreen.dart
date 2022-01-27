@@ -1,5 +1,7 @@
 import 'package:dog_app/authentication.dart/inputTextWidget.dart';
 import 'package:dog_app/authentication.dart/signup.dart';
+import 'package:dog_app/database/database.dart';
+import 'package:dog_app/model/signup_table.dart';
 import 'package:dog_app/ui_designs/myhomepage.dart';
 
 import 'package:flutter/material.dart';
@@ -15,6 +17,30 @@ class _SearchScreenState extends State<LoginScreen> {
   final TextEditingController _pwdController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  var _databaseprovider;
+
+  late Future<List<signUpModel>> signUpdetailList;
+
+  void initState() {
+    super.initState();
+    _databaseprovider = Databaseprovider.instance;
+    refreshData();
+  }
+
+  refreshData() {
+    setState(() {
+      getdetail();
+    });
+  }
+
+  getdetail() {
+    setState(() {
+      signUpdetailList = _databaseprovider.getAllsignUpdetail();
+      print('Data from categoryList $signUpdetailList');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -280,7 +306,7 @@ class _SearchScreenState extends State<LoginScreen> {
                         topRight: const Radius.circular(30.0),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
