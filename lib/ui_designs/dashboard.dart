@@ -31,12 +31,8 @@ class _DashboardState extends State<Dashboard> {
 
   getTransactions() {
     setState(() {
-      expenseTransactionsList = _databaseprovider.gettransactionbyExpense();
-
       transactionsList = _databaseprovider.getAllTransactions();
       print('Data from categoryList $transactionsList');
-
-      print('Data from categoryList $expenseTransactionsList');
     });
   }
 

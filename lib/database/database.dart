@@ -124,19 +124,4 @@ class Databaseprovider {
         where: "$dogId = ?", whereArgs: [transactionModel.id]);
     return result;
   }
-
-// for transactions by expense
-  Future<List<DogModel>> gettransactionbyExpense() async {
-    final newdb = await instance.database;
-    final List<Map<String, dynamic>> newEData = await newdb.query(
-      '$dogTable',
-      where: "transactionType = ?",
-      whereArgs: ['Expense'],
-    );
-    List<DogModel> homeData = newEData.isNotEmpty
-        ? newEData.map((e) => DogModel.fromdatabaseJson(e)).toList()
-        : [];
-    print('Date expense of Category $homeData');
-    return homeData;
-  }
 }
