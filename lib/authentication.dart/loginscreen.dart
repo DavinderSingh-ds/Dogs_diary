@@ -5,6 +5,7 @@ import 'package:dog_app/model/signup_table.dart';
 import 'package:dog_app/ui_designs/myhomepage.dart';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen() : super();
@@ -16,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 class _SearchScreenState extends State<LoginScreen> {
   final TextEditingController _pwdController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey _formKey = GlobalKey<FormState>();
 
   var _databaseprovider;
 
@@ -39,6 +40,26 @@ class _SearchScreenState extends State<LoginScreen> {
       signUpdetailList = _databaseprovider.getAllsignUpdetail();
       print('Data from categoryList $signUpdetailList');
     });
+  }
+
+  void onLogin(signUpModel user) async {
+    if (user.userEmail == _emailController.text.toString()) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MyHomePage(title: 'Dogs_Diary'),
+        ),
+      );
+    } else {
+      Fluttertoast.showToast(
+          msg: "Enter Correct Detail ${_emailController.text.toString()}",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blue,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
   }
 
   @override
@@ -115,13 +136,78 @@ class _SearchScreenState extends State<LoginScreen> {
                 height: 55.0,
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => MyHomePage(title: 'Dogs_diary'),
-                        ),
-                      );
-                    }
+                    print("${_emailController.text.toString()}");
+                    // Fluttertoast.showToast(
+                    //     msg:
+                    //         "Enter Correct Detail ${_emailController.text.toString()}",
+                    //     toastLength: Toast.LENGTH_SHORT,
+                    //     gravity: ToastGravity.BOTTOM,
+                    //     timeInSecForIosWeb: 1,
+                    //     backgroundColor: Colors.blue,
+                    //     textColor: Colors.white,
+                    //     fontSize: 16.0);
+                    onLogin(signUpModel(
+                        userName: "",
+                        userEmail: "",
+                        userPassword: "",
+                        confirmPassword: ""));
+                    // if (_formKey.currentState!.validate()) {
+                    //   Navigator.of(context).push(
+                    //     MaterialPageRoute(
+                    //       builder: (context) => MyHomePage(title: 'Dogs_diary'),
+                    //     ),
+                    //   );
+                    // }
+                    //
+                    //
+                    //
+                    ///
+                    /////
+                    ////
+                    ////
+                    ///
+                    ///
+                    ///
+
+                    //              FutureBuilder(
+                    //   future: signUpdetailList,
+                    //   builder:
+                    //       (BuildContext context, AsyncSnapshot<List<signUpModel>> snapshot) {
+                    //     if (snapshot.hasData) {
+                    //       return ListView.builder(
+                    //         itemCount: snapshot.data?.length,
+                    //         itemBuilder: (BuildContext context, int index) {
+                    //           signUpModel signupmodelli = snapshot.data![index];
+
+                    //           return Column(
+                    //             children: [
+                    //               Text(signupmodelli.userEmail),
+                    //               Text(signupmodelli.userPassword),
+                    //             ],
+                    //           );
+                    //         },
+                    //       );
+                    //     } else {
+                    //       return Center(
+                    //         child: Column(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             Text('Please Wait.....'),
+                    //             SizedBox(height: 30),
+                    //             CircularProgressIndicator(),
+                    //           ],
+                    //         ),
+                    //       );
+                    //     }
+                    //   },
+                    // );
+
+                    ///
+                    ///
+                    ////
+                    ////
+                    ////
+                    ////
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
@@ -153,6 +239,18 @@ class _SearchScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+
+                      //
+                      //
+                      //
+                      //
+                      /////
+                      ///////
+                      /////
+                      ///
+                      //
+                      //
+                      //
                     ),
                   ),
                 ),

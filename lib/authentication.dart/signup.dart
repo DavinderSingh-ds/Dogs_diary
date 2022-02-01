@@ -18,6 +18,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -104,6 +105,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 25.0,
                   ),
                   InputTextWidget(
+                      controller: _namecontroller,
                       labelText: "Name",
                       icon: Icons.person,
                       obscureText: false,
