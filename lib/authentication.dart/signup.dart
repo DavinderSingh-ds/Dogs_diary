@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:dog_app/authentication.dart/inputTextWidget.dart';
 import 'package:dog_app/authentication.dart/loginScreen.dart';
 import 'package:dog_app/database/database.dart';
 import 'package:dog_app/model/signup_table.dart';
+import 'package:dog_app/ui_designs/myhomepage.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpScreen extends StatefulWidget {
   SignUpScreen({
@@ -229,23 +233,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       //   }
                       // },
 
-                      onPressed: () {
+                      onPressed: () async {
                         final FormState? formm = _formKey.currentState;
                         if (formm!.validate()) {
+                          var userEmail = _emailController.text.toString();
+
                           final newexpensess = signUpModel(
-                            userEmail: _emailController.text.toString(),
+                            userEmail: userEmail,
                             userPassword: _pass.text.toString(),
                             confirmPassword: _confirmPass.text.toString(),
-                            userName: '',
+                            userName: _namecontroller.text.toString(),
                           );
 
-                          if (_confirmPass.text.toString().isNotEmpty) {
-                            var passId = _databaseProviderr
-                                .addSignUpdetail(newexpensess);
-                            print('${passId.toString()}');
+                          var existingUser = await _databaseProviderr
+                              .getUserByEmail(userEmail);
+                          log('existingUser: $existingUser');
+                          if (existingUser != Null) {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "'$userEmail' is already taken. Please try another email.",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.blue,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                            return;
                           }
+                          await _databaseProviderr
+                              .addSignUpdetail(newexpensess);
 
-                          Navigator.pop(context);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MyHomePage(title: 'Dogs_Diary'),
+                            ),
+                          );
                         }
                       },
 

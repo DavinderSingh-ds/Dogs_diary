@@ -3,6 +3,7 @@ import 'package:dog_app/authentication.dart/signup.dart';
 import 'package:dog_app/database/database.dart';
 import 'package:dog_app/model/signup_table.dart';
 import 'package:dog_app/ui_designs/myhomepage.dart';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -26,40 +27,33 @@ class _SearchScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     _databaseprovider = Databaseprovider.instance;
-    refreshData();
   }
 
-  refreshData() {
-    setState(() {
-      getdetail();
-    });
-  }
+  void onLogin() async {
+    var email = _emailController.text.toString();
+    var password = _pwdController.text.toString();
+    var user =
+        await _databaseprovider.getUserByEmailAndPassword(email, password);
+    log('user details are: $user');
 
-  getdetail() {
-    setState(() {
-      signUpdetailList = _databaseprovider.getAllsignUpdetail();
-      print('Data from categoryList $signUpdetailList');
-    });
-  }
-
-  void onLogin(signUpModel user) async {
-    if (user.userEmail == _emailController.text.toString()) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MyHomePage(title: 'Dogs_Diary'),
-        ),
-      );
-    } else {
+    if (user == Null) {
       Fluttertoast.showToast(
-          msg: "Enter Correct Detail ${_emailController.text.toString()}",
+          msg: "Invalid credentials",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.blue,
           textColor: Colors.white,
           fontSize: 16.0);
+      return;
     }
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MyHomePage(title: 'Dogs_Diary'),
+      ),
+    );
   }
 
   @override
@@ -136,7 +130,11 @@ class _SearchScreenState extends State<LoginScreen> {
                 height: 55.0,
                 child: ElevatedButton(
                   onPressed: () async {
-                    print("${_emailController.text.toString()}");
+                    final FormState? formm = _formKey.currentState as FormState?;
+                    if (formm!.validate()) {
+                      onLogin();
+                    }
+                    return;
                     // Fluttertoast.showToast(
                     //     msg:
                     //         "Enter Correct Detail ${_emailController.text.toString()}",
@@ -146,11 +144,7 @@ class _SearchScreenState extends State<LoginScreen> {
                     //     backgroundColor: Colors.blue,
                     //     textColor: Colors.white,
                     //     fontSize: 16.0);
-                    onLogin(signUpModel(
-                        userName: "",
-                        userEmail: "",
-                        userPassword: "",
-                        confirmPassword: ""));
+
                     // if (_formKey.currentState!.validate()) {
                     //   Navigator.of(context).push(
                     //     MaterialPageRoute(
@@ -420,6 +414,7 @@ class _SearchScreenState extends State<LoginScreen> {
         children: [
           Container(
             height: 50.0,
+            margin: const EdgeInsets.only(bottom: 50.0),
             color: Colors.white,
             child: Center(
                 child: Wrap(
