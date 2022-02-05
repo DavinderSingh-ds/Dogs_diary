@@ -130,7 +130,8 @@ class _SearchScreenState extends State<LoginScreen> {
                 height: 55.0,
                 child: ElevatedButton(
                   onPressed: () async {
-                    final FormState? formm = _formKey.currentState as FormState?;
+                    final FormState? formm =
+                        _formKey.currentState as FormState?;
                     if (formm!.validate()) {
                       onLogin();
                     }

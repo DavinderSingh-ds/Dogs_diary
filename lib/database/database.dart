@@ -90,17 +90,21 @@ class Databaseprovider {
     );
   }
 
-  Future<Object> getUserByEmailAndPassword(String email, String password) async {
-      final db = await database; 
-      var users = await db.query(signUpTable, where: "email = ? AND passwrd = ?", whereArgs: [email, password]);
-      log('users are: $users');
-      return users.isNotEmpty ? users.first : Null;
+  Future<Object> getUserByEmailAndPassword(
+      String email, String password) async {
+    final db = await database;
+    var users = await db.query(signUpTable,
+        where: "email = ? AND passwrd = ?", whereArgs: [email, password]);
+    log('users are: $users');
+    return users.isNotEmpty ? users.first : Null;
   }
+
   Future<Object> getUserByEmail(String email) async {
-      final db = await database; 
-      var users = await db.query(signUpTable, where: "email = ? ", whereArgs: [email]);
-      log('users are: $users');
-      return users.isNotEmpty ? users.first : Null;
+    final db = await database;
+    var users =
+        await db.query(signUpTable, where: "email = ? ", whereArgs: [email]);
+    log('users are: $users');
+    return users.isNotEmpty ? users.first : Null;
   }
 
   // Fetch all the data from the signUp_Table to use or show in the signup screep Page

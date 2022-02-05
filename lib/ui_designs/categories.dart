@@ -1,3 +1,5 @@
+import 'package:dog_app/database/database.dart';
+import 'package:dog_app/model/signup_table.dart';
 import 'package:flutter/material.dart';
 
 class Categories extends StatefulWidget {
@@ -8,62 +10,74 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
+  var _databaseprovider;
+
+  late Future<List<signUpModel>> signUpdetailList;
+
+  void initState() {
+    super.initState();
+    _databaseprovider = Databaseprovider.instance;
+    refreshData();
+  }
+
+  refreshData() {
+    setState(() {
+      getUserData();
+    });
+  }
+
+  getUserData() {
+    setState(() {
+      signUpdetailList = _databaseprovider.getAllsignUpdetail();
+      print('Data from categoryList $signUpdetailList');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          height: 200,
-          width: 330,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/dog5.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 200,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Color(0xff22453294),
+          borderRadius: BorderRadius.circular(10),
         ),
-        SizedBox(
-          height: 10,
+        child: FutureBuilder(
+          future: signUpdetailList,
+          builder: (BuildContext context,
+              AsyncSnapshot<List<signUpModel>> snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data?.length,
+                itemBuilder: (BuildContext context, int index) {
+                  signUpModel signupmodelli = snapshot.data![index];
+
+                  return Card(
+                    child: Column(
+                      children: [
+                        Text(signupmodelli.userName),
+                      ],
+                    ),
+                  );
+                },
+              );
+            } else {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Please Wait.....'),
+                    SizedBox(height: 30),
+                    CircularProgressIndicator(),
+                  ],
+                ),
+              );
+            }
+          },
         ),
-        Text(
-          'For More Info.',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Times New Roman',
-            fontSize: 25.0,
-            shadows: [
-              Shadow(
-                blurRadius: 1,
-                offset: Offset(1, 1),
-                color: Colors.blue,
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          'Contact Us',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Times New Roman',
-            fontSize: 15.0,
-          ),
-        ),
-        Text(
-          'Email : davindersingh00743@gmail.com',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Times New Roman',
-            fontSize: 15.0,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

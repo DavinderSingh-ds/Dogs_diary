@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:dog_app/database/database.dart';
 import 'package:dog_app/model/dog_table.dart';
+import 'package:dog_app/theme/light_colors.dart';
 import 'package:flutter/material.dart';
 import 'enter_detail.dart';
 
@@ -32,7 +35,7 @@ class _DashboardState extends State<Dashboard> {
   getTransactions() {
     setState(() {
       transactionsList = _databaseprovider.getAllTransactions();
-      print('Data from categoryList $transactionsList');
+      log('Data from categoryList $transactionsList');
     });
   }
 
@@ -54,7 +57,7 @@ class _DashboardState extends State<Dashboard> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: LightColors.kLightGreen,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(88),
                 ),
@@ -113,7 +116,7 @@ class _DashboardState extends State<Dashboard> {
                           gradient: LinearGradient(
                             colors: [
                               Colors.blueAccent,
-                              Colors.greenAccent,
+                              Color(0xffF0580),
                             ],
                           ),
                           borderRadius: BorderRadius.circular(10),
