@@ -1,5 +1,6 @@
 import 'package:dog_app/database/database.dart';
 import 'package:dog_app/model/signup_table.dart';
+
 import 'package:flutter/material.dart';
 
 class Categories extends StatefulWidget {
@@ -35,48 +36,229 @@ class _CategoriesState extends State<Categories> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 200,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          color: Color(0xff22453294),
-          borderRadius: BorderRadius.circular(10),
+    return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(
+          'Profile',
+          style: TextStyle(color: Colors.black87),
         ),
-        child: FutureBuilder(
-          future: signUpdetailList,
-          builder: (BuildContext context,
-              AsyncSnapshot<List<signUpModel>> snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data?.length,
-                itemBuilder: (BuildContext context, int index) {
-                  signUpModel signupmodelli = snapshot.data![index];
-
-                  return Card(
-                    child: Column(
-                      children: [
-                        Text(signupmodelli.userName),
-                      ],
-                    ),
-                  );
-                },
-              );
-            } else {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Please Wait.....'),
-                    SizedBox(height: 30),
-                    CircularProgressIndicator(),
-                  ],
+        leading: Icon(
+          Icons.menu,
+          color: Colors.black87,
+        ),
+        backgroundColor: Colors.white,
+      ),
+      resizeToAvoidBottomInset: false,
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
                 ),
-              );
-            }
-          },
-        ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 150,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              'https://images4.alphacoders.com/286/286746.jpg'),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: FutureBuilder(
+                        future: signUpdetailList,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<List<signUpModel>> snapshot) {
+                          if (snapshot.hasData) {
+                            print(
+                                'Length of transaction $snapshot.data?.length');
+                            return ListView.builder(
+                              itemCount: snapshot.data?.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                signUpModel dogModel = snapshot.data![index];
+
+                                return Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    CircleAvatar(
+                                      radius: 50,
+                                      backgroundImage:
+                                          AssetImage('images/profile.jpg'),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      width: 200,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(4),
+                                        ),
+                                        color: Colors.white,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            '${dogModel.userName}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15,
+                                              //fontFamily: 'Times New Roman',
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          } else {
+                            return Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Please Wait.....'),
+                                  SizedBox(height: 30),
+                                  CircularProgressIndicator(),
+                                ],
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 10,
+                        right: 10,
+                        top: 8,
+                      ),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                        child: ListView(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 6,
+                                right: 6,
+                                top: 8,
+                                bottom: 2,
+                              ),
+                              child: Card(
+                                elevation: 1.2,
+                                child: Container(
+                                  height: 70,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 6,
+                                right: 6,
+                                top: 2,
+                                bottom: 2,
+                              ),
+                              child: Card(
+                                elevation: 1.2,
+                                child: Container(
+                                  height: 70,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 6,
+                                right: 6,
+                                top: 2,
+                                bottom: 2,
+                              ),
+                              child: Card(
+                                elevation: 1.2,
+                                child: Container(
+                                  height: 70,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 6,
+                                right: 6,
+                                top: 2,
+                                bottom: 2,
+                              ),
+                              child: Card(
+                                elevation: 1.2,
+                                child: Container(
+                                  height: 70,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 6,
+                                right: 6,
+                                top: 2,
+                                bottom: 2,
+                              ),
+                              child: Card(
+                                elevation: 1.2,
+                                child: Container(
+                                  height: 70,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 6,
+                                right: 6,
+                                top: 2,
+                                bottom: 2,
+                              ),
+                              child: Card(
+                                elevation: 1.2,
+                                child: Container(
+                                  height: 70,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
