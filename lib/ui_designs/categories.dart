@@ -34,6 +34,22 @@ class _CategoriesState extends State<Categories> {
     });
   }
 
+  void _showHeroAnimation(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Scaffold(
+          body: Center(
+            child: Hero(
+              tag: 'hero-Animation-on-profile',
+              child: Image.asset('images/profile.jpg'),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,10 +111,19 @@ class _CategoriesState extends State<Categories> {
                                     SizedBox(
                                       height: 10,
                                     ),
-                                    CircleAvatar(
-                                      radius: 50,
-                                      backgroundImage:
-                                          AssetImage('images/profile.jpg'),
+                                    GestureDetector(
+                                      child: Hero(
+                                        transitionOnUserGestures: mounted,
+                                        tag: 'hero-animation_tag',
+                                        child: CircleAvatar(
+                                          radius: 50,
+                                          backgroundImage:
+                                              AssetImage('images/profile.jpg'),
+                                        ),
+                                      ),
+                                      onTap: () => {
+                                        _showHeroAnimation(context),
+                                      },
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -173,6 +198,7 @@ class _CategoriesState extends State<Categories> {
                                 elevation: 1.2,
                                 child: Container(
                                   height: 70,
+                                  child: Text('info'),
                                 ),
                               ),
                             ),
