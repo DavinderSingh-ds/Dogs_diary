@@ -41,7 +41,7 @@ class _InputTextWidgetState extends State<InputTextWidget> {
                   icon: Icon(
                     widget.icon,
                     color: Colors.black,
-                    size: 32.0, /*Color(0xff224597)*/
+                    size: 32.0,
                   ),
                   labelText: widget.labelText,
                   labelStyle: TextStyle(color: Colors.black54, fontSize: 16.0),

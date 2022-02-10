@@ -2,6 +2,7 @@ import 'package:dog_app/database/database.dart';
 import 'package:dog_app/model/signup_table.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 
 class Categories extends StatefulWidget {
   const Categories({Key? key}) : super(key: key);
@@ -89,7 +90,7 @@ class _CategoriesState extends State<Categories> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                              'https://images4.alphacoders.com/286/286746.jpg'),
+                              'https://www.pixelstalk.net/wp-content/uploads/2016/07/Free-Download-3D-HD-Nature-Backgrounds-1.jpg'),
                           fit: BoxFit.cover,
                         ),
                         borderRadius: BorderRadius.circular(10),
@@ -143,7 +144,6 @@ class _CategoriesState extends State<Categories> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 15,
-                                              //fontFamily: 'Times New Roman',
                                             ),
                                           ),
                                         ],
@@ -174,112 +174,120 @@ class _CategoriesState extends State<Categories> {
                       padding: const EdgeInsets.only(
                         left: 10,
                         right: 10,
-                        top: 8,
+                        top: 15,
                       ),
                       child: Container(
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color: Colors.grey[200],
+                          color: Colors.blue,
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
                           ),
                         ),
-                        child: ListView(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 6,
-                                right: 6,
-                                top: 8,
-                                bottom: 2,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 10,
                               ),
-                              child: Card(
-                                elevation: 1.2,
-                                child: Container(
-                                  height: 70,
-                                  child: Text('info'),
+                              Wrap(
+                                children: [
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        FlutterSlimyCard(
+                                          topCardHeight: 160,
+                                          bottomCardHeight: 120,
+                                          cardWidth: 180,
+                                          topCardWidget: topWidget(),
+                                          bottomCardWidget: bottomWidget(),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        FlutterSlimyCard(
+                                          topCardHeight: 160,
+                                          bottomCardHeight: 120,
+                                          cardWidth: 180,
+                                          topCardWidget: topWidget(),
+                                          bottomCardWidget: bottomWidget(),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    FlutterSlimyCard(
+                                      topCardHeight: 160,
+                                      bottomCardHeight: 120,
+                                      cardWidth: 180,
+                                      topCardWidget: topWidget(),
+                                      bottomCardWidget: bottomWidget(),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    FlutterSlimyCard(
+                                      topCardHeight: 160,
+                                      bottomCardHeight: 120,
+                                      cardWidth: 180,
+                                      topCardWidget: topWidget(),
+                                      bottomCardWidget: bottomWidget(),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    FlutterSlimyCard(
+                                      topCardHeight: 160,
+                                      bottomCardHeight: 120,
+                                      cardWidth: 180,
+                                      topCardWidget: topWidget(),
+                                      bottomCardWidget: bottomWidget(),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    FlutterSlimyCard(
+                                      topCardHeight: 160,
+                                      bottomCardHeight: 120,
+                                      cardWidth: 180,
+                                      topCardWidget: topWidget(),
+                                      bottomCardWidget: bottomWidget(),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 6,
-                                right: 6,
-                                top: 2,
-                                bottom: 2,
-                              ),
-                              child: Card(
-                                elevation: 1.2,
-                                child: Container(
-                                  height: 70,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 6,
-                                right: 6,
-                                top: 2,
-                                bottom: 2,
-                              ),
-                              child: Card(
-                                elevation: 1.2,
-                                child: Container(
-                                  height: 70,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 6,
-                                right: 6,
-                                top: 2,
-                                bottom: 2,
-                              ),
-                              child: Card(
-                                elevation: 1.2,
-                                child: Container(
-                                  height: 70,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 6,
-                                right: 6,
-                                top: 2,
-                                bottom: 2,
-                              ),
-                              child: Card(
-                                elevation: 1.2,
-                                child: Container(
-                                  height: 70,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 6,
-                                right: 6,
-                                top: 2,
-                                bottom: 2,
-                              ),
-                              child: Card(
-                                elevation: 1.2,
-                                child: Container(
-                                  height: 70,
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 40,
-                  )
+                    height: 10,
+                  ),
                 ],
               ),
             ),
@@ -288,4 +296,43 @@ class _CategoriesState extends State<Categories> {
       ),
     );
   }
+}
+
+topWidget() {
+  return Container(
+    child: SafeArea(
+      child: Column(
+        children: [
+          Container(
+              height: 75, child: Image(image: AssetImage('images/dogu.jpg'))),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            'A Dog',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+bottomWidget() {
+  return Container(
+    margin: EdgeInsets.only(top: 5),
+    child: Column(
+      children: [
+        SizedBox(height: 10),
+        Flexible(
+            child: Text(
+          'A Dog is an animal which people can used to Time Pass. Some Dogs are used for Work. Say Hello to a Funny Dog',
+          style: TextStyle(color: Colors.white),
+        ))
+      ],
+    ),
+  );
 }

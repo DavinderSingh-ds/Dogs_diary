@@ -53,7 +53,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 )
               ],
             )),
-        // centerTitle: true,
         leading: InkWell(
           onTap: () => Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => LoginScreen(),
@@ -80,14 +79,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
+                offset: Offset(0, 3),
               ),
             ],
           ),
           width: screenWidth,
           height: screenHeight,
           child: SingleChildScrollView(
-            //controller: controller,
             child: Form(
               key: _formKey,
               child: Column(
@@ -145,7 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 icon: Icon(
                                   Icons.lock,
                                   color: Colors.black,
-                                  size: 32.0, /*Color(0xff224597)*/
+                                  size: 32.0,
                                 ),
                                 labelText: "Enter password",
                                 labelStyle: TextStyle(
@@ -193,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 icon: Icon(
                                   Icons.lock,
                                   color: Colors.black,
-                                  size: 32.0, /*Color(0xff224597)*/
+                                  size: 32.0,
                                 ),
                                 labelText: "Confirm Password",
                                 labelStyle: TextStyle(
@@ -222,17 +220,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Container(
                     height: 55.0,
                     child: ElevatedButton(
-                      // onPressed: () async {
-                      //   if (_formKey.currentState!.validate()) {
-                      //     Navigator.of(context).push(
-                      //       MaterialPageRoute(
-                      //         builder: (context) =>
-                      //             MyHomePage(title: 'Dogs_diary'),
-                      //       ),
-                      //     );
-                      //   }
-                      // },
-
                       onPressed: () async {
                         final FormState? formm = _formKey.currentState;
                         if (formm!.validate()) {
@@ -272,10 +259,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           );
                         }
                       },
-
-                      // onPressed: () =>
-
-                      // )),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.white,
                         elevation: 0.0,

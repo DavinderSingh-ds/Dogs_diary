@@ -48,9 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
-
-      // centerTitle: true,
-
       body: Center(
         child: _widgetoptions.elementAt(_selectedIndex),
       ),

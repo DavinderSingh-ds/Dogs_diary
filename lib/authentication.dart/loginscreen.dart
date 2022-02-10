@@ -136,73 +136,6 @@ class _SearchScreenState extends State<LoginScreen> {
                       onLogin();
                     }
                     return;
-                    // Fluttertoast.showToast(
-                    //     msg:
-                    //         "Enter Correct Detail ${_emailController.text.toString()}",
-                    //     toastLength: Toast.LENGTH_SHORT,
-                    //     gravity: ToastGravity.BOTTOM,
-                    //     timeInSecForIosWeb: 1,
-                    //     backgroundColor: Colors.blue,
-                    //     textColor: Colors.white,
-                    //     fontSize: 16.0);
-
-                    // if (_formKey.currentState!.validate()) {
-                    //   Navigator.of(context).push(
-                    //     MaterialPageRoute(
-                    //       builder: (context) => MyHomePage(title: 'Dogs_diary'),
-                    //     ),
-                    //   );
-                    // }
-                    //
-                    //
-                    //
-                    ///
-                    /////
-                    ////
-                    ////
-                    ///
-                    ///
-                    ///
-
-                    //              FutureBuilder(
-                    //   future: signUpdetailList,
-                    //   builder:
-                    //       (BuildContext context, AsyncSnapshot<List<signUpModel>> snapshot) {
-                    //     if (snapshot.hasData) {
-                    //       return ListView.builder(
-                    //         itemCount: snapshot.data?.length,
-                    //         itemBuilder: (BuildContext context, int index) {
-                    //           signUpModel signupmodelli = snapshot.data![index];
-
-                    //           return Column(
-                    //             children: [
-                    //               Text(signupmodelli.userEmail),
-                    //               Text(signupmodelli.userPassword),
-                    //             ],
-                    //           );
-                    //         },
-                    //       );
-                    //     } else {
-                    //       return Center(
-                    //         child: Column(
-                    //           mainAxisAlignment: MainAxisAlignment.center,
-                    //           children: [
-                    //             Text('Please Wait.....'),
-                    //             SizedBox(height: 30),
-                    //             CircularProgressIndicator(),
-                    //           ],
-                    //         ),
-                    //       );
-                    //     }
-                    //   },
-                    // );
-
-                    ///
-                    ///
-                    ////
-                    ////
-                    ////
-                    ////
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
@@ -234,18 +167,6 @@ class _SearchScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
-                      //
-                      //
-                      //
-                      //
-                      /////
-                      ///////
-                      /////
-                      ///
-                      //
-                      //
-                      //
                     ),
                   ),
                 ),

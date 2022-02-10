@@ -32,13 +32,13 @@ class _TransactionsState extends State<Transactions> {
                           ),
                           blurRadius: 10.0,
                           spreadRadius: 2.0,
-                        ), //BoxShadow
+                        ),
                         BoxShadow(
                           color: Colors.white,
                           offset: const Offset(0.0, 0.0),
                           blurRadius: 0.0,
                           spreadRadius: 0.0,
-                        ), //BoxShadow
+                        ),
                       ],
                     ),
                     width: 300,

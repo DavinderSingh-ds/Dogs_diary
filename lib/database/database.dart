@@ -11,7 +11,6 @@ class Databaseprovider {
   static final _databaseName = "dogdatabase.db";
   static final _databaseVersion = 1;
 
-  //Fields for Signup Table
   static final signUpTable = 'authentication';
   static final userId = 'id';
   static final userName = 'name';
@@ -19,7 +18,6 @@ class Databaseprovider {
   static final userPassword = 'passwrd';
   static final cnfPassword = 'cnfpsswrd';
 
-  //Fields for Dog Table
   static final dogTable = 'transactions';
   static final dogId = 'id';
   static final dogName = 'transactioncategorytype';
@@ -28,22 +26,18 @@ class Databaseprovider {
   static final dogBreed = 'description';
   static final dogColor = 'transactionType';
 
-  // make this a singleton class
   Databaseprovider._privateconstructor();
   static final Databaseprovider instance =
       Databaseprovider._privateconstructor();
-  // only have a single app-wide referance to the database
   static Database? _database;
   Future<Database> get database async {
     if (_database != null) {
       return _database!;
     }
-    // lazily instatiate the db the first time it is accesed
     _database = await _initDatabase();
     return _database!;
   }
 
-  // this opens the database
   _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
@@ -51,7 +45,6 @@ class Databaseprovider {
         version: _databaseVersion, onCreate: _oncreate);
   }
 
-  //  SQL CODE to create the database table
   Future _oncreate(Database db, int version) async {
     await db.execute("CREATE TABLE $dogTable("
         "$dogId INTEGER PRIMARY KEY AUTOINCREMENT ,"
@@ -71,8 +64,6 @@ class Databaseprovider {
         ")");
   }
 
-//TRANSACTION TABLE ALL CRUD OPERATIONS
-  //For inserting the data in the database of dogTable
   addTransaction(DogModel transactionModel) async {
     Database newdb = await instance.database;
     return await newdb.insert(
@@ -81,7 +72,6 @@ class Databaseprovider {
     );
   }
 
-  //For inserting the data in the database of signUpTable
   addSignUpdetail(signUpModel signupdetailModel) async {
     Database adddetaildb = await instance.database;
     return await adddetaildb.insert(
@@ -107,7 +97,6 @@ class Databaseprovider {
     return users.isNotEmpty ? users.first : Null;
   }
 
-  // Fetch all the data from the signUp_Table to use or show in the signup screep Page
   Future<List<signUpModel>> getAllsignUpdetail() async {
     final signupdb = await instance.database;
     final List<Map<String, Object?>> signUpallData =
@@ -115,7 +104,6 @@ class Databaseprovider {
     return signUpallData.map((e) => signUpModel.fromdatabaseJson(e)).toList();
   }
 
-  // Fetch all the data from the dog_Table to show in the dashboard Page
   Future<List<DogModel>> getAllTransactions() async {
     final db = await instance.database;
     final List<Map<String, Object?>> newallData = await db.query('$dogTable');
@@ -123,7 +111,6 @@ class Databaseprovider {
     return newallData.map((e) => DogModel.fromdatabaseJson(e)).toList();
   }
 
-  //Deleting the Single Transaction Entry from the Transaction Table in the database
   Future<void> deleteTransaction(int? id) async {
     final newdb = await instance.database;
     await newdb.delete(
@@ -133,7 +120,6 @@ class Databaseprovider {
     );
   }
 
-  //Updating the transaction by ID from the Transaction Table in the database
   updateTransaction(DogModel transactionModel) async {
     final newdb = await database;
     var result = await newdb.update(
