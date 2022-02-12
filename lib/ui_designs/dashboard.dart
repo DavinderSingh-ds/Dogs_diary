@@ -4,6 +4,7 @@ import 'package:dog_app/database/database.dart';
 import 'package:dog_app/model/dog_table.dart';
 import 'package:dog_app/theme/light_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'enter_detail.dart';
 
 class Dashboard extends StatefulWidget {
@@ -58,9 +59,6 @@ class _DashboardState extends State<Dashboard> {
             child: Container(
               decoration: BoxDecoration(
                 color: LightColors.kLightGreen,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(88),
-                ),
               ),
               child: Column(
                 children: [
@@ -113,12 +111,7 @@ class _DashboardState extends State<Dashboard> {
                         height: 460,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.blueAccent,
-                              Color(0xffF0580),
-                            ],
-                          ),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: FutureBuilder(
@@ -328,7 +321,7 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                   SizedBox(
-                    height: 4,
+                    height: 2,
                   ),
                 ],
               ),
@@ -338,66 +331,37 @@ class _DashboardState extends State<Dashboard> {
             height: 75,
             child: Stack(
               children: [
-                Container(
-                  color: Colors.white,
-                ),
+                // Container(
+                //   color: Colors.white,
+                // ),
                 Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: Colors.purpleAccent,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40),
-                    ),
+                    color: Colors.cyanAccent,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 38,
-                        width: 240,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.cyan,
-                              Colors.indigoAccent,
-                            ],
+                      MaterialButton(
+                        height: 42,
+                        minWidth: 350,
+                        color: Colors.amber,
+                        child: Text(
+                          'Add Dog Detail',
+                          style: TextStyle(
+                            fontSize: 18,
+                          
                           ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(5),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: Offset(1, 1),
-                              blurRadius: 1,
-                              color: Colors.black,
-                            ),
-                          ],
                         ),
-                        child: MaterialButton(
-                          child: Text(
-                            'Add Dog Detail',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                              shadows: [
-                                Shadow(
-                                    offset: Offset(2, 2),
-                                    color: Colors.deepPurple),
-                              ],
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EnterDetail(title: ''),
                             ),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EnterDetail(title: ''),
-                              ),
-                            );
-                          },
-                        ),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -405,6 +369,31 @@ class _DashboardState extends State<Dashboard> {
               ],
             ),
           ),
+        ],
+      ),
+      floatingActionButton: SpeedDial(
+        child: Icon(Icons.add),
+        closedForegroundColor: Colors.black,
+        openForegroundColor: Colors.white,
+        closedBackgroundColor: Colors.white,
+        openBackgroundColor: Colors.black,
+        speedDialChildren: <SpeedDialChild>[
+          SpeedDialChild(
+            child: Icon(Icons.directions_run),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.red,
+            label: 'Let\'s start a run!',
+            onPressed: () {},
+            closeSpeedDialOnPressed: false,
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.directions_walk),
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.yellow,
+            label: 'Let\'s go for a walk!',
+            onPressed: () {},
+          ),
+          //  Your other SpeeDialChildren go here.
         ],
       ),
     );
