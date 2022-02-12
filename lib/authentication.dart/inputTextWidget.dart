@@ -32,31 +32,32 @@ class _InputTextWidgetState extends State<InputTextWidget> {
           child: Padding(
             padding: const EdgeInsets.only(right: 20.0, left: 15.0),
             child: TextFormField(
-                controller: widget.controller,
-                textInputAction: TextInputAction.next,
-                obscureText: widget.obscureText,
-                autofocus: false,
-                keyboardType: widget.keyboardType,
-                decoration: InputDecoration(
-                  icon: Icon(
-                    widget.icon,
-                    color: Colors.black,
-                    size: 32.0,
-                  ),
-                  labelText: widget.labelText,
-                  labelStyle: TextStyle(color: Colors.black54, fontSize: 16.0),
-                  hintText: '',
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black54),
-                  ),
-                  border: InputBorder.none,
+              controller: widget.controller,
+              textInputAction: TextInputAction.next,
+              obscureText: widget.obscureText,
+              autofocus: false,
+              keyboardType: widget.keyboardType,
+              decoration: InputDecoration(
+                icon: Icon(
+                  widget.icon,
+                  color: Colors.black,
+                  size: 32.0,
                 ),
-                validator: (val) {
-                  if (val!.isEmpty) {
-                    return 'the textfield is empty!';
-                  }
-                }),
+                labelText: widget.labelText,
+                labelStyle: TextStyle(color: Colors.black54, fontSize: 16.0),
+                hintText: '',
+                enabledBorder: InputBorder.none,
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black54),
+                ),
+                border: InputBorder.none,
+              ),
+              // validator: (val) {
+              //   if (val!.isEmpty) {
+              //     return 'the textfield is empty!';
+              //   }
+              // }),
+            ),
           ),
         ),
       ),

@@ -345,13 +345,12 @@ class _DashboardState extends State<Dashboard> {
                     children: [
                       MaterialButton(
                         height: 42,
-                        minWidth: 350,
+                        minWidth: 280,
                         color: Colors.amber,
                         child: Text(
                           'Add Dog Detail',
                           style: TextStyle(
                             fontSize: 18,
-                          
                           ),
                         ),
                         onPressed: () {
