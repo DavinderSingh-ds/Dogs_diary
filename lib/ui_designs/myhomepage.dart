@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Icons.message,
             Icons.quick_contacts_mail_rounded,
           ],
-          centerIcon: Icons.camera_alt_outlined,
+          centerIcon: Icons.now_widgets_sharp,
           selectedIndex: _selectedIndex,
           onItemPressed: onPressed,
         ),

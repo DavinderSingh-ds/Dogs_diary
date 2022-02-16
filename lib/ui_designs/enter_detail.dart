@@ -45,14 +45,13 @@ class _EnterDetailState extends State<EnterDetail> {
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: Colors.blue[400],
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(left: 14, right: 14),
+            padding: const EdgeInsets.only(left: 15, right: 15),
             child: Expanded(
               child: Container(
-                width: 350,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),

@@ -201,83 +201,10 @@ class _CategoriesState extends State<Categories> {
                                         SizedBox(
                                           width: 10,
                                         ),
-                                        FlutterSlimyCard(
-                                          topCardHeight: 160,
-                                          bottomCardHeight: 120,
-                                          cardWidth: 180,
-                                          topCardWidget: topWidget(),
-                                          bottomCardWidget: bottomWidget(),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        FlutterSlimyCard(
-                                          topCardHeight: 160,
-                                          bottomCardHeight: 120,
-                                          cardWidth: 180,
-                                          topCardWidget: topWidget(),
-                                          bottomCardWidget: bottomWidget(),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
                                       ],
                                     ),
                                   ),
                                 ],
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    FlutterSlimyCard(
-                                      topCardHeight: 160,
-                                      bottomCardHeight: 120,
-                                      cardWidth: 180,
-                                      topCardWidget: topWidget(),
-                                      bottomCardWidget: bottomWidget(),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    FlutterSlimyCard(
-                                      topCardHeight: 160,
-                                      bottomCardHeight: 120,
-                                      cardWidth: 180,
-                                      topCardWidget: topWidget(),
-                                      bottomCardWidget: bottomWidget(),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    FlutterSlimyCard(
-                                      topCardHeight: 160,
-                                      bottomCardHeight: 120,
-                                      cardWidth: 180,
-                                      topCardWidget: topWidget(),
-                                      bottomCardWidget: bottomWidget(),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    FlutterSlimyCard(
-                                      topCardHeight: 160,
-                                      bottomCardHeight: 120,
-                                      cardWidth: 180,
-                                      topCardWidget: topWidget(),
-                                      bottomCardWidget: bottomWidget(),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                  ],
-                                ),
                               ),
                             ],
                           ),
@@ -296,43 +223,4 @@ class _CategoriesState extends State<Categories> {
       ),
     );
   }
-}
-
-topWidget() {
-  return Container(
-    child: SafeArea(
-      child: Column(
-        children: [
-          Container(
-              height: 75, child: Image(image: AssetImage('images/dogu.jpg'))),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
-            'A Dog',
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-bottomWidget() {
-  return Container(
-    margin: EdgeInsets.only(top: 5),
-    child: Column(
-      children: [
-        SizedBox(height: 10),
-        Flexible(
-            child: Text(
-          'A Dog is an animal which people can used to Time Pass. Some Dogs are used for Work. Say Hello to a Funny Dog',
-          style: TextStyle(color: Colors.white),
-        ))
-      ],
-    ),
-  );
 }
