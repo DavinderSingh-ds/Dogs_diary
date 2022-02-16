@@ -1,4 +1,5 @@
 import 'package:dog_app/authentication.dart/loginScreen.dart';
+import 'package:dog_app/ui_designs/chatting.dart';
 import 'package:dog_app/ui_designs/dashboard.dart';
 import 'package:dog_app/ui_designs/feeds.dart';
 import 'package:dog_app/ui_designs/transactions.dart';
@@ -60,11 +61,11 @@ class _MyHomePageState extends State<MyHomePage> {
         bottomNavigationBar: DiamondBottomNavigation(
           itemIcons: const [
             Icons.home,
-            Icons.notifications,
+            Icons.pets_outlined,
             Icons.message,
-            Icons.account_box,
+            Icons.quick_contacts_mail_rounded,
           ],
-          centerIcon: Icons.place,
+          centerIcon: Icons.camera_alt_outlined,
           selectedIndex: _selectedIndex,
           onItemPressed: onPressed,
         ),
@@ -82,6 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
       } else if (index == 2) {
         _selectedWidget = const Feeds();
       } else if (index == 3) {
+        _selectedWidget = const MessageBox();
+      } else if (index == 4) {
         _selectedWidget = const Categories();
       }
     });

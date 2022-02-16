@@ -343,24 +343,31 @@ class _DashboardState extends State<Dashboard> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MaterialButton(
-                        height: 42,
-                        minWidth: 280,
-                        color: Colors.amber,
-                        child: Text(
-                          'Add Dog Detail',
-                          style: TextStyle(
-                            fontSize: 18,
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 30,
                           ),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EnterDetail(title: ''),
+                          MaterialButton(
+                            height: 42,
+                            minWidth: 280,
+                            color: Colors.amber,
+                            child: Text(
+                              'Add Dog Detail',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
                             ),
-                          );
-                        },
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EnterDetail(title: ''),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -381,7 +388,7 @@ class _DashboardState extends State<Dashboard> {
             child: Icon(Icons.directions_run),
             foregroundColor: Colors.white,
             backgroundColor: Colors.red,
-            label: 'Let\'s start a run!',
+            label: 'Let\'s Fun!',
             onPressed: () {},
             closeSpeedDialOnPressed: false,
           ),
@@ -392,7 +399,6 @@ class _DashboardState extends State<Dashboard> {
             label: 'Let\'s go for a walk!',
             onPressed: () {},
           ),
-          //  Your other SpeeDialChildren go here.
         ],
       ),
     );
