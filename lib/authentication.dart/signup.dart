@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dog_app/authentication.dart/inputTextWidget.dart';
 import 'package:dog_app/authentication.dart/loginscreen.dart';
 import 'package:dog_app/database/database.dart';
+import 'package:dog_app/model/autoLoginmodel.dart';
 import 'package:dog_app/model/signup_table.dart';
 import 'package:dog_app/ui_designs/myhomepage.dart';
 import 'package:flutter/material.dart';
@@ -232,6 +233,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             userName: _namecontroller.text.toString(),
                           );
 
+                          final autoExpensess = autoLoginModel(
+                            userEmail: userEmail,
+                            userPassword: _pass.text.toString(),
+                            confirmPassword: _confirmPass.text.toString(),
+                            userName: _namecontroller.text.toString(),
+                          );
+
                           var existingUser = await _databaseProviderr
                               .getUserByEmail(userEmail);
                           log('existingUser: $existingUser');
@@ -249,6 +257,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                           await _databaseProviderr
                               .addSignUpdetail(newexpensess);
+                          await _databaseProviderr
+                              .addSignUpdetail_forAuto(autoExpensess);
 
                           Navigator.pushReplacement(
                             context,

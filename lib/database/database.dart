@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:dog_app/model/autoLoginmodel.dart';
 import 'package:dog_app/model/dog_table.dart';
 import 'package:dog_app/model/signup_table.dart';
 import 'package:path/path.dart';
@@ -17,6 +18,13 @@ class Databaseprovider {
   static final userEmail = 'email';
   static final userPassword = 'passwrd';
   static final cnfPassword = 'cnfpsswrd';
+
+  static final autoLoginTable = 'autoLogin';
+  static final autoId = 'id';
+  static final autoName = 'name';
+  static final autoEmail = 'email';
+  static final autoPassword = 'passwrd';
+  static final autocnfPassword = 'cnfpsswrd';
 
   static final dogTable = 'transactions';
   static final dogId = 'id';
@@ -62,6 +70,14 @@ class Databaseprovider {
         "$userPassword TEXT ,"
         "$cnfPassword TEXT "
         ")");
+
+    await db.execute("CREATE TABLE $autoLoginTable("
+        "$autoId INTEGER PRIMARY KEY AUTOINCREMENT ,"
+        "$autoName TEXT ,"
+        "$autoEmail TEXT ,"
+        "$autoPassword TEXT ,"
+        "$autocnfPassword TEXT "
+        ")");
   }
 
   addTransaction(DogModel transactionModel) async {
@@ -77,6 +93,15 @@ class Databaseprovider {
     return await adddetaildb.insert(
       '$signUpTable',
       signupdetailModel.todatabaseJson(),
+    );
+  }
+
+  // ignore: non_constant_identifier_names
+  addSignUpdetail_forAuto(autoLoginModel autoLogin) async {
+    Database adddetaildb = await instance.database;
+    return await adddetaildb.insert(
+      '$autoLoginTable',
+      autoLogin.todatabaseJson(),
     );
   }
 
