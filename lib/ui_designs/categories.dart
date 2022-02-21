@@ -2,7 +2,6 @@ import 'package:dog_app/database/database.dart';
 import 'package:dog_app/model/signup_table.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 
 class Categories extends StatefulWidget {
   const Categories({Key? key}) : super(key: key);

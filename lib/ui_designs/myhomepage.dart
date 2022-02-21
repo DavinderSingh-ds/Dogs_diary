@@ -1,4 +1,4 @@
-import 'package:dog_app/authentication.dart/loginScreen.dart';
+import 'package:dog_app/authentication.dart/loginscreen.dart';
 import 'package:dog_app/ui_designs/chatting.dart';
 import 'package:dog_app/ui_designs/dashboard.dart';
 import 'package:dog_app/ui_designs/feeds.dart';

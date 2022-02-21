@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dog_app/authentication.dart/inputTextWidget.dart';
-import 'package:dog_app/authentication.dart/loginScreen.dart';
+import 'package:dog_app/authentication.dart/loginscreen.dart';
 import 'package:dog_app/database/database.dart';
 import 'package:dog_app/model/signup_table.dart';
 import 'package:dog_app/ui_designs/myhomepage.dart';
