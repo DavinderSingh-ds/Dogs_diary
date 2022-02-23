@@ -1,6 +1,7 @@
 import 'package:dog_app/authentication.dart/inputTextWidget.dart';
 import 'package:dog_app/authentication.dart/signup.dart';
 import 'package:dog_app/database/database.dart';
+import 'package:dog_app/model/autoLoginmodel.dart';
 import 'package:dog_app/model/signup_table.dart';
 import 'package:dog_app/ui_designs/myhomepage.dart';
 import 'dart:developer';
@@ -23,10 +24,29 @@ class _SearchScreenState extends State<LoginScreen> {
   var _databaseprovider;
 
   late Future<List<signUpModel>> signUpdetailList;
+  late Future<List<autoLoginModel>> getAllSessionDetail;
 
   void initState() {
     super.initState();
     _databaseprovider = Databaseprovider.instance;
+    autoLogin();
+  }
+
+  void autoLogin() async {
+    var currentUser = await _databaseprovider.checkCurrentSession();
+    if (currentUser != Null) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => MyHomePage(title: 'Dogs_Diary'),
+        ),
+      );
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+      );
+    }
   }
 
   void onLogin() async {

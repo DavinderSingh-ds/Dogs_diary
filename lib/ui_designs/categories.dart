@@ -1,5 +1,5 @@
 import 'package:dog_app/database/database.dart';
-import 'package:dog_app/model/signup_table.dart';
+import 'package:dog_app/model/autoLoginmodel.dart';
 
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> {
   var _databaseprovider;
 
-  late Future<List<signUpModel>> signUpdetailList;
+  late Future<List<autoLoginModel>> currentSession;
 
   void initState() {
     super.initState();
@@ -29,8 +29,8 @@ class _CategoriesState extends State<Categories> {
 
   getUserData() {
     setState(() {
-      signUpdetailList = _databaseprovider.getAllsignUpdetail();
-      print('Data from categoryList $signUpdetailList');
+      currentSession = _databaseprovider.getAllSessionDetail();
+      print('Data from categoryList $currentSession');
     });
   }
 
@@ -95,16 +95,16 @@ class _CategoriesState extends State<Categories> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: FutureBuilder(
-                        future: signUpdetailList,
+                        future: currentSession,
                         builder: (BuildContext context,
-                            AsyncSnapshot<List<signUpModel>> snapshot) {
+                            AsyncSnapshot<List<autoLoginModel>> snapshot) {
                           if (snapshot.hasData) {
                             print(
                                 'Length of transaction $snapshot.data?.length');
                             return ListView.builder(
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext context, int index) {
-                                signUpModel dogModel = snapshot.data![index];
+                                autoLoginModel dogModel = snapshot.data![index];
 
                                 return Column(
                                   children: [
@@ -199,6 +199,26 @@ class _CategoriesState extends State<Categories> {
                                       children: [
                                         SizedBox(
                                           width: 10,
+                                        ),
+                                        MaterialButton(
+                                          color: Colors.grey[200],
+                                          onPressed: () {
+                                            // _databaseprovider.deleteTransaction(
+                                            //     autoLoginModel.id);
+                                            refreshData();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content:
+                                                    Text('User Logged Out'),
+                                                duration: Duration(seconds: 1),
+                                              ),
+                                            );
+                                          },
+                                          child: Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          ),
                                         ),
                                       ],
                                     ),

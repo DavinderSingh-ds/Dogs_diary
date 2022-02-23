@@ -122,11 +122,27 @@ class Databaseprovider {
     return users.isNotEmpty ? users.first : Null;
   }
 
+  Future<Object> checkCurrentSession() async {
+    final db = await database;
+    var users = await db.query("SELECT $autoEmail FROM $autoLoginTable");
+    log('users are: $users');
+    return 0;
+  }
+
   Future<List<signUpModel>> getAllsignUpdetail() async {
     final signupdb = await instance.database;
     final List<Map<String, Object?>> signUpallData =
         await signupdb.query('$signUpTable');
     return signUpallData.map((e) => signUpModel.fromdatabaseJson(e)).toList();
+  }
+
+  Future<List<autoLoginModel>> getAllSessionDetail() async {
+    final autodb = await instance.database;
+    final List<Map<String, Object?>> allSessionData =
+        await autodb.query('$signUpTable');
+    return allSessionData
+        .map((e) => autoLoginModel.fromdatabaseJson(e))
+        .toList();
   }
 
   Future<List<DogModel>> getAllTransactions() async {
@@ -141,6 +157,15 @@ class Databaseprovider {
     await newdb.delete(
       '$dogTable',
       where: "$dogId = ?",
+      whereArgs: [id],
+    );
+  }
+
+  Future<void> deleteFromSession(int? id) async {
+    final newdb = await instance.database;
+    await newdb.delete(
+      '$autoLoginTable',
+      where: "$autoId = ?",
       whereArgs: [id],
     );
   }
