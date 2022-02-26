@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dog_app/authentication.dart/inputTextWidget.dart';
 import 'package:dog_app/authentication.dart/signup.dart';
 import 'package:dog_app/database/database.dart';
@@ -29,25 +31,8 @@ class _SearchScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     _databaseprovider = Databaseprovider.instance;
-    autoLogin();
   }
 
-  void autoLogin() async {
-    var currentUser = await _databaseprovider.checkCurrentSession();
-    if (currentUser != Null) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => MyHomePage(title: 'Dogs_Diary'),
-        ),
-      );
-    } else {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => LoginScreen(),
-        ),
-      );
-    }
-  }
 
   void onLogin() async {
     var email = _emailController.text.toString();
@@ -68,6 +53,16 @@ class _SearchScreenState extends State<LoginScreen> {
       return;
     }
 
+    final autoLoginUserData = autoLoginModel(
+      userEmail: user['email'],
+      userPassword: user['passwrd'],
+      confirmPassword: user['cnfpsswrd'],
+      userName: user['name'],
+    );
+
+    log('autoLoginUserData: $autoLoginUserData');
+
+    await _databaseprovider.addSignUpdetail_forAuto(autoLoginUserData);
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(

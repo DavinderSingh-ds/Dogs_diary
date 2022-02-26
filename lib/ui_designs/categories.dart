@@ -1,3 +1,4 @@
+import 'package:dog_app/authentication.dart/loginscreen.dart';
 import 'package:dog_app/database/database.dart';
 import 'package:dog_app/model/autoLoginmodel.dart';
 
@@ -202,10 +203,16 @@ class _CategoriesState extends State<Categories> {
                                         ),
                                         MaterialButton(
                                           color: Colors.grey[200],
-                                          onPressed: () {
-                                            // _databaseprovider.deleteTransaction(
-                                            //     autoLoginModel.id);
-                                            refreshData();
+                                          onPressed: () async {
+                                            await _databaseprovider
+                                                .clearSession();
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LoginScreen(),
+                                              ),
+                                            );
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(

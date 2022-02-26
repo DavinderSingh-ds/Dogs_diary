@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dog_app/authentication.dart/loginscreen.dart';
+import 'package:dog_app/database/database.dart';
+import 'package:dog_app/ui_designs/myhomepage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,18 +44,34 @@ class SplashhScreen extends StatefulWidget {
 }
 
 class _SplashhScreenState extends State<SplashhScreen> {
+  var _databaseprovider;
+
   @override
   void initState() {
     super.initState();
+    _databaseprovider = Databaseprovider.instance;
     Timer(
-      Duration(seconds: 4),
-      () => Navigator.pushReplacement(
+      Duration(seconds: 2),
+      () => autoLogin(),
+    );
+  }
+  void autoLogin() async {
+    var currentUser = await _databaseprovider.checkCurrentSession();
+    log('curent user: $currentUser');
+    if (currentUser != Null) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => MyHomePage(title: 'Dogs_Diary'),
+        ),
+      );
+    } else {
+       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => LoginScreen(),
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override
@@ -102,7 +121,7 @@ class _SplashhScreenState extends State<SplashhScreen> {
                   height: 25,
                 ),
                 ScalingText(
-                  'Loading Please Wait....',
+                  'Loading Please Wait...',
                   style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'Times New Roman',

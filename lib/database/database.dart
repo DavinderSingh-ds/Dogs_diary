@@ -124,9 +124,16 @@ class Databaseprovider {
 
   Future<Object> checkCurrentSession() async {
     final db = await database;
-    var users = await db.query("SELECT $autoEmail FROM $autoLoginTable");
+    await db.execute("CREATE TABLE IF NOT EXISTS $autoLoginTable("
+        "$autoId INTEGER PRIMARY KEY AUTOINCREMENT ,"
+        "$autoName TEXT ,"
+        "$autoEmail TEXT ,"
+        "$autoPassword TEXT ,"
+        "$autocnfPassword TEXT "
+        ")");
+    var users = await db.query(autoLoginTable);
     log('users are: $users');
-    return 0;
+    return users.isNotEmpty ? users.first : Null;
   }
 
   Future<List<signUpModel>> getAllsignUpdetail() async {
@@ -161,12 +168,10 @@ class Databaseprovider {
     );
   }
 
-  Future<void> deleteFromSession(int? id) async {
+  Future<void> clearSession() async {
     final newdb = await instance.database;
     await newdb.delete(
       '$autoLoginTable',
-      where: "$autoId = ?",
-      whereArgs: [id],
     );
   }
 
