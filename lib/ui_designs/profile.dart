@@ -1,6 +1,6 @@
-import 'package:dog_app/authentication.dart/loginscreen.dart';
+import 'package:dog_app/authentication.dart/login_screen.dart';
 import 'package:dog_app/database/database.dart';
-import 'package:dog_app/model/autoLoginmodel.dart';
+import 'package:dog_app/model/session_table.dart';
 
 import 'package:flutter/material.dart';
 

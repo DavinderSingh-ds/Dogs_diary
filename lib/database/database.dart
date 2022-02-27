@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:dog_app/model/autoLoginmodel.dart';
-import 'package:dog_app/model/dog_table.dart';
-import 'package:dog_app/model/signup_table.dart';
+import 'package:dog_app/model/session_table.dart';
+import 'package:dog_app/model/dogs_table.dart';
+import 'package:dog_app/model/users_table.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';

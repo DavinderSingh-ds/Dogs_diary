@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dog_app/database/database.dart';
-import 'package:dog_app/model/dog_table.dart';
+import 'package:dog_app/model/dogs_table.dart';
 import 'package:dog_app/theme/light_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';

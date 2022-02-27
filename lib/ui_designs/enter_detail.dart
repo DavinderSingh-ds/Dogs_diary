@@ -1,6 +1,6 @@
 import 'package:dog_app/database/database.dart';
 
-import 'package:dog_app/model/dog_table.dart';
+import 'package:dog_app/model/dogs_table.dart';
 import 'package:flutter/material.dart';
 
 class EnterDetail extends StatefulWidget {

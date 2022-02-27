@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:dog_app/authentication.dart/loginscreen.dart';
+import 'package:dog_app/authentication.dart/login_screen.dart';
 import 'package:dog_app/database/database.dart';
 import 'package:dog_app/ui_designs/myhomepage.dart';
 
@@ -55,6 +55,7 @@ class _SplashhScreenState extends State<SplashhScreen> {
       () => autoLogin(),
     );
   }
+
   void autoLogin() async {
     var currentUser = await _databaseprovider.checkCurrentSession();
     log('curent user: $currentUser');
@@ -65,7 +66,7 @@ class _SplashhScreenState extends State<SplashhScreen> {
         ),
       );
     } else {
-       Navigator.pushReplacement(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => LoginScreen(),

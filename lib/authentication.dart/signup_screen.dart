@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:dog_app/authentication.dart/inputTextWidget.dart';
-import 'package:dog_app/authentication.dart/loginscreen.dart';
+import 'package:dog_app/authentication.dart/login_screen.dart';
 import 'package:dog_app/database/database.dart';
-import 'package:dog_app/model/autoLoginmodel.dart';
-import 'package:dog_app/model/signup_table.dart';
+import 'package:dog_app/model/session_table.dart';
+import 'package:dog_app/model/users_table.dart';
 import 'package:dog_app/ui_designs/myhomepage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

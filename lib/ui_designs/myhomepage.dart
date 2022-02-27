@@ -1,4 +1,4 @@
-import 'package:dog_app/authentication.dart/loginscreen.dart';
+import 'package:dog_app/authentication.dart/login_screen.dart';
 import 'package:dog_app/ui_designs/chatting.dart';
 import 'package:dog_app/ui_designs/dashboard.dart';
 import 'package:dog_app/ui_designs/feeds.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:diamond_bottom_bar/diamond_bottom_bar.dart';
 
-import 'categories.dart';
+import 'profile.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required String title}) : super(key: key);

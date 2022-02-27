@@ -52,11 +52,12 @@ class _InputTextWidgetState extends State<InputTextWidget> {
                 ),
                 border: InputBorder.none,
               ),
-              // validator: (val) {
-              //   if (val!.isEmpty) {
-              //     return 'the textfield is empty!';
-              //   }
-              // }),
+              validator: (val) {
+                if (val!.isEmpty) {
+                  return 'the Textfield is empty!';
+                }
+                return null;
+              },
             ),
           ),
         ),
