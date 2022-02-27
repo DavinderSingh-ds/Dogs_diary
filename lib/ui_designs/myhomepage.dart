@@ -2,12 +2,11 @@ import 'package:dog_app/authentication.dart/login_screen.dart';
 import 'package:dog_app/ui_designs/chatting.dart';
 import 'package:dog_app/ui_designs/dashboard.dart';
 import 'package:dog_app/ui_designs/feeds.dart';
-import 'package:dog_app/ui_designs/transactions.dart';
+import 'package:dog_app/ui_designs/available_dogs.dart';
+import 'package:dog_app/ui_designs/profile.dart';
 import 'package:flutter/material.dart';
 
 import 'package:diamond_bottom_bar/diamond_bottom_bar.dart';
-
-import 'profile.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required String title}) : super(key: key);
@@ -79,13 +78,13 @@ class _MyHomePageState extends State<MyHomePage> {
       if (index == 0) {
         _selectedWidget = const Dashboard();
       } else if (index == 1) {
-        _selectedWidget = const Transactions();
+        _selectedWidget = const AvailableDogs();
       } else if (index == 2) {
         _selectedWidget = const Feeds();
       } else if (index == 3) {
         _selectedWidget = const MessageBox();
       } else if (index == 4) {
-        _selectedWidget = const Categories();
+        _selectedWidget = const Profile();
       }
     });
   }

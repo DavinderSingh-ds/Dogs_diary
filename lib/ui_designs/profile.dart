@@ -4,14 +4,14 @@ import 'package:dog_app/model/session_table.dart';
 
 import 'package:flutter/material.dart';
 
-class Categories extends StatefulWidget {
-  const Categories({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
-  _CategoriesState createState() => _CategoriesState();
+  _ProfileState createState() => _ProfileState();
 }
 
-class _CategoriesState extends State<Categories> {
+class _ProfileState extends State<Profile> {
   var _databaseprovider;
 
   late Future<List<sessionModel>> currentSession;
