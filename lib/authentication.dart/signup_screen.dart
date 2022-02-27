@@ -15,7 +15,7 @@ class SignUpScreen extends StatefulWidget {
     this.newsignUpModel,
   }) : super(key: key);
 
-  final signUpModel? newsignUpModel;
+  final usersModel? newsignUpModel;
 
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -226,14 +226,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         if (formm!.validate()) {
                           var userEmail = _emailController.text.toString();
 
-                          final newexpensess = signUpModel(
+                          final newexpensess = usersModel(
                             userEmail: userEmail,
                             userPassword: _pass.text.toString(),
                             confirmPassword: _confirmPass.text.toString(),
                             userName: _namecontroller.text.toString(),
                           );
 
-                          final autoExpensess = autoLoginModel(
+                          final autoExpensess = sessionModel(
                             userEmail: userEmail,
                             userPassword: _pass.text.toString(),
                             confirmPassword: _confirmPass.text.toString(),

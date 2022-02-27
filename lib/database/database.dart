@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:dog_app/model/session_table.dart';
 import 'package:dog_app/model/dogs_table.dart';
+import 'package:dog_app/model/session_table.dart';
 import 'package:dog_app/model/users_table.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -88,7 +88,7 @@ class Databaseprovider {
     );
   }
 
-  addSignUpdetail(signUpModel signupdetailModel) async {
+  addSignUpdetail(usersModel signupdetailModel) async {
     Database adddetaildb = await instance.database;
     return await adddetaildb.insert(
       '$signUpTable',
@@ -97,7 +97,7 @@ class Databaseprovider {
   }
 
   // ignore: non_constant_identifier_names
-  addSignUpdetail_forAuto(autoLoginModel autoLogin) async {
+  addSignUpdetail_forAuto(sessionModel autoLogin) async {
     Database adddetaildb = await instance.database;
     return await adddetaildb.insert(
       '$autoLoginTable',
@@ -136,20 +136,18 @@ class Databaseprovider {
     return users.isNotEmpty ? users.first : Null;
   }
 
-  Future<List<signUpModel>> getAllsignUpdetail() async {
+  Future<List<usersModel>> getAllsignUpdetail() async {
     final signupdb = await instance.database;
     final List<Map<String, Object?>> signUpallData =
         await signupdb.query('$signUpTable');
-    return signUpallData.map((e) => signUpModel.fromdatabaseJson(e)).toList();
+    return signUpallData.map((e) => usersModel.fromdatabaseJson(e)).toList();
   }
 
-  Future<List<autoLoginModel>> getAllSessionDetail() async {
+  Future<List<sessionModel>> getAllSessionDetail() async {
     final autodb = await instance.database;
     final List<Map<String, Object?>> allSessionData =
         await autodb.query('$signUpTable');
-    return allSessionData
-        .map((e) => autoLoginModel.fromdatabaseJson(e))
-        .toList();
+    return allSessionData.map((e) => sessionModel.fromdatabaseJson(e)).toList();
   }
 
   Future<List<DogModel>> getAllTransactions() async {

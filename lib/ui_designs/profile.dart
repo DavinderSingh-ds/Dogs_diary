@@ -14,7 +14,7 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> {
   var _databaseprovider;
 
-  late Future<List<autoLoginModel>> currentSession;
+  late Future<List<sessionModel>> currentSession;
 
   void initState() {
     super.initState();
@@ -98,14 +98,14 @@ class _CategoriesState extends State<Categories> {
                       child: FutureBuilder(
                         future: currentSession,
                         builder: (BuildContext context,
-                            AsyncSnapshot<List<autoLoginModel>> snapshot) {
+                            AsyncSnapshot<List<sessionModel>> snapshot) {
                           if (snapshot.hasData) {
                             print(
                                 'Length of transaction $snapshot.data?.length');
                             return ListView.builder(
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext context, int index) {
-                                autoLoginModel dogModel = snapshot.data![index];
+                                sessionModel dogModel = snapshot.data![index];
 
                                 return Column(
                                   children: [
