@@ -12,14 +12,14 @@ class Databaseprovider {
   static final _databaseName = "dogdatabase.db";
   static final _databaseVersion = 1;
 
-  static final signUpTable = 'authentication';
+  static final usersTable = 'authentication';
   static final userId = 'id';
   static final userName = 'name';
   static final userEmail = 'email';
   static final userPassword = 'passwrd';
   static final cnfPassword = 'cnfpsswrd';
 
-  static final autoLoginTable = 'autoLogin';
+  static final sessionTable = 'autoLogin';
   static final autoId = 'id';
   static final autoName = 'name';
   static final autoEmail = 'email';
@@ -63,7 +63,7 @@ class Databaseprovider {
         "$dogColor TEXT "
         ")");
 
-    await db.execute("CREATE TABLE $signUpTable("
+    await db.execute("CREATE TABLE $usersTable("
         "$userId INTEGER PRIMARY KEY AUTOINCREMENT ,"
         "$userName TEXT ,"
         "$userEmail TEXT ,"
@@ -71,7 +71,7 @@ class Databaseprovider {
         "$cnfPassword TEXT "
         ")");
 
-    await db.execute("CREATE TABLE $autoLoginTable("
+    await db.execute("CREATE TABLE $sessionTable("
         "$autoId INTEGER PRIMARY KEY AUTOINCREMENT ,"
         "$autoName TEXT ,"
         "$autoEmail TEXT ,"
@@ -91,7 +91,7 @@ class Databaseprovider {
   addSignUpdetail(usersModel signupdetailModel) async {
     Database adddetaildb = await instance.database;
     return await adddetaildb.insert(
-      '$signUpTable',
+      '$usersTable',
       signupdetailModel.todatabaseJson(),
     );
   }
@@ -100,7 +100,7 @@ class Databaseprovider {
   addSignUpdetail_forAuto(sessionModel autoLogin) async {
     Database adddetaildb = await instance.database;
     return await adddetaildb.insert(
-      '$autoLoginTable',
+      '$sessionTable',
       autoLogin.todatabaseJson(),
     );
   }
@@ -108,7 +108,7 @@ class Databaseprovider {
   Future<Object> getUserByEmailAndPassword(
       String email, String password) async {
     final db = await database;
-    var users = await db.query(signUpTable,
+    var users = await db.query(usersTable,
         where: "email = ? AND passwrd = ?", whereArgs: [email, password]);
     log('users are: $users');
     return users.isNotEmpty ? users.first : Null;
@@ -117,21 +117,21 @@ class Databaseprovider {
   Future<Object> getUserByEmail(String email) async {
     final db = await database;
     var users =
-        await db.query(signUpTable, where: "email = ? ", whereArgs: [email]);
+        await db.query(usersTable, where: "email = ? ", whereArgs: [email]);
     log('users are: $users');
     return users.isNotEmpty ? users.first : Null;
   }
 
   Future<Object> checkCurrentSession() async {
     final db = await database;
-    await db.execute("CREATE TABLE IF NOT EXISTS $autoLoginTable("
+    await db.execute("CREATE TABLE IF NOT EXISTS $sessionTable("
         "$autoId INTEGER PRIMARY KEY AUTOINCREMENT ,"
         "$autoName TEXT ,"
         "$autoEmail TEXT ,"
         "$autoPassword TEXT ,"
         "$autocnfPassword TEXT "
         ")");
-    var users = await db.query(autoLoginTable);
+    var users = await db.query(sessionTable);
     log('users are: $users');
     return users.isNotEmpty ? users.first : Null;
   }
@@ -139,14 +139,14 @@ class Databaseprovider {
   Future<List<usersModel>> getAllsignUpdetail() async {
     final signupdb = await instance.database;
     final List<Map<String, Object?>> signUpallData =
-        await signupdb.query('$signUpTable');
+        await signupdb.query('$usersTable');
     return signUpallData.map((e) => usersModel.fromdatabaseJson(e)).toList();
   }
 
   Future<List<sessionModel>> getAllSessionDetail() async {
     final autodb = await instance.database;
     final List<Map<String, Object?>> allSessionData =
-        await autodb.query('$signUpTable');
+        await autodb.query('$sessionTable');
     return allSessionData.map((e) => sessionModel.fromdatabaseJson(e)).toList();
   }
 
@@ -169,7 +169,7 @@ class Databaseprovider {
   Future<void> clearSession() async {
     final newdb = await instance.database;
     await newdb.delete(
-      '$autoLoginTable',
+      '$sessionTable',
     );
   }
 
