@@ -1,9 +1,9 @@
-import 'package:dog_app/authentication.dart/login_screen.dart';
-import 'package:dog_app/ui_designs/chatting.dart';
-import 'package:dog_app/ui_designs/dashboard.dart';
-import 'package:dog_app/ui_designs/feeds.dart';
-import 'package:dog_app/ui_designs/available_dogs.dart';
-import 'package:dog_app/ui_designs/profile.dart';
+import 'package:dog_app/Screens/LoginScreen.dart';
+import 'package:dog_app/Screens/Chatting.dart';
+import 'package:dog_app/Screens/Dashboard.dart';
+import 'package:dog_app/Screens/Feeds.dart';
+import 'package:dog_app/Screens/AvailableDogs.dart';
+import 'package:dog_app/Screens/Profile.dart';
 import 'package:flutter/material.dart';
 
 import 'package:diamond_bottom_bar/diamond_bottom_bar.dart';

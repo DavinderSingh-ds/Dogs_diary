@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:dog_app/authentication.dart/login_screen.dart';
-import 'package:dog_app/database/database.dart';
-import 'package:dog_app/ui_designs/myhomepage.dart';
+import 'package:dog_app/Screens/LoginScreen.dart';
+import 'package:dog_app/Database/Database.dart';
+import 'package:dog_app/Screens/MyHomepage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

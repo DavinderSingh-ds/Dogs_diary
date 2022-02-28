@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:dog_app/authentication.dart/inputTextWidget.dart';
-import 'package:dog_app/authentication.dart/login_screen.dart';
-import 'package:dog_app/database/database.dart';
-import 'package:dog_app/model/session_table.dart';
-import 'package:dog_app/model/users_table.dart';
-import 'package:dog_app/ui_designs/myhomepage.dart';
+import 'package:dog_app/Database/Database.dart';
+import 'package:dog_app/Database/SessionTable.dart';
+import 'package:dog_app/Database/UsersTable.dart';
+import 'package:dog_app/Widgets/InputTextWidget.dart';
+import 'package:dog_app/Screens/LoginScreen.dart';
+import 'package:dog_app/Screens/MyHomepage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -15,7 +15,7 @@ class SignUpScreen extends StatefulWidget {
     this.newsignUpModel,
   }) : super(key: key);
 
-  final usersModel? newsignUpModel;
+  final UsersModel? newsignUpModel;
 
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -226,14 +226,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         if (formm!.validate()) {
                           var userEmail = _emailController.text.toString();
 
-                          final newexpensess = usersModel(
+                          final newexpensess = UsersModel(
                             userEmail: userEmail,
                             userPassword: _pass.text.toString(),
                             confirmPassword: _confirmPass.text.toString(),
                             userName: _namecontroller.text.toString(),
                           );
 
-                          final autoExpensess = sessionModel(
+                          final autoExpensess = SessionModel(
                             userEmail: userEmail,
                             userPassword: _pass.text.toString(),
                             confirmPassword: _confirmPass.text.toString(),
@@ -258,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           await _databaseProviderr
                               .addSignUpdetail(newexpensess);
                           await _databaseProviderr
-                              .addSignUpdetail_forAuto(autoExpensess);
+                              .addSessionDetails(autoExpensess);
 
                           Navigator.pushReplacement(
                             context,

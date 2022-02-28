@@ -1,6 +1,6 @@
-import 'package:dog_app/authentication.dart/login_screen.dart';
-import 'package:dog_app/database/database.dart';
-import 'package:dog_app/model/session_table.dart';
+import 'package:dog_app/Database/Database.dart';
+import 'package:dog_app/Database/SessionTable.dart';
+import 'package:dog_app/Screens/LoginScreen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   var _databaseprovider;
 
-  late Future<List<sessionModel>> currentSession;
+  late Future<List<SessionModel>> currentSession;
 
   void initState() {
     super.initState();
@@ -98,14 +98,14 @@ class _ProfileState extends State<Profile> {
                       child: FutureBuilder(
                         future: currentSession,
                         builder: (BuildContext context,
-                            AsyncSnapshot<List<sessionModel>> snapshot) {
+                            AsyncSnapshot<List<SessionModel>> snapshot) {
                           if (snapshot.hasData) {
                             print(
                                 'Length of transaction $snapshot.data?.length');
                             return ListView.builder(
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext context, int index) {
-                                sessionModel dogModel = snapshot.data![index];
+                                SessionModel dogModel = snapshot.data![index];
 
                                 return Column(
                                   children: [

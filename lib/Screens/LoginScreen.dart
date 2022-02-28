@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:dog_app/authentication.dart/inputTextWidget.dart';
-import 'package:dog_app/authentication.dart/signup_screen.dart';
-import 'package:dog_app/database/database.dart';
-import 'package:dog_app/model/session_table.dart';
-import 'package:dog_app/ui_designs/myhomepage.dart';
-import 'package:dog_app/model/users_table.dart';
+import 'package:dog_app/Database/Database.dart';
+import 'package:dog_app/Database/SessionTable.dart';
+import 'package:dog_app/Database/UsersTable.dart';
+import 'package:dog_app/Widgets/InputTextWidget.dart';
+import 'package:dog_app/Screens/SignupScreen.dart';
+import 'package:dog_app/Screens/MyHomepage.dart';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -25,8 +25,8 @@ class _SearchScreenState extends State<LoginScreen> {
 
   var _databaseprovider;
 
-  late Future<List<usersModel>> signUpdetailList;
-  late Future<List<sessionModel>> getAllSessionDetail;
+  late Future<List<UsersModel>> signUpdetailList;
+  late Future<List<SessionModel>> getAllSessionDetail;
 
   void initState() {
     super.initState();
@@ -52,7 +52,7 @@ class _SearchScreenState extends State<LoginScreen> {
       return;
     }
 
-    final autoLoginUserData = sessionModel(
+    final autoLoginUserData = SessionModel(
       userEmail: user['email'],
       userPassword: user['passwrd'],
       confirmPassword: user['cnfpsswrd'],
@@ -61,7 +61,7 @@ class _SearchScreenState extends State<LoginScreen> {
 
     log('autoLoginUserData: $autoLoginUserData');
 
-    await _databaseprovider.addSignUpdetail_forAuto(autoLoginUserData);
+    await _databaseprovider.addSessionDetails(autoLoginUserData);
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(

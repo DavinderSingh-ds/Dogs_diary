@@ -1,9 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:dog_app/model/dogs_table.dart';
-import 'package:dog_app/model/session_table.dart';
-import 'package:dog_app/model/users_table.dart';
+import 'package:dog_app/Database/DogsTable.dart';
+import 'package:dog_app/Database/SessionTable.dart';
+import 'package:dog_app/Database/UsersTable.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -88,7 +88,7 @@ class Databaseprovider {
     );
   }
 
-  addSignUpdetail(usersModel signupdetailModel) async {
+  addSignUpdetail(UsersModel signupdetailModel) async {
     Database adddetaildb = await instance.database;
     return await adddetaildb.insert(
       '$usersTable',
@@ -96,8 +96,7 @@ class Databaseprovider {
     );
   }
 
-  // ignore: non_constant_identifier_names
-  addSignUpdetail_forAuto(sessionModel autoLogin) async {
+  addSessionDetails(SessionModel autoLogin) async {
     Database adddetaildb = await instance.database;
     return await adddetaildb.insert(
       '$sessionTable',
@@ -136,18 +135,18 @@ class Databaseprovider {
     return users.isNotEmpty ? users.first : Null;
   }
 
-  Future<List<usersModel>> getAllsignUpdetail() async {
+  Future<List<UsersModel>> getAllsignUpdetail() async {
     final signupdb = await instance.database;
     final List<Map<String, Object?>> signUpallData =
         await signupdb.query('$usersTable');
-    return signUpallData.map((e) => usersModel.fromdatabaseJson(e)).toList();
+    return signUpallData.map((e) => UsersModel.fromdatabaseJson(e)).toList();
   }
 
-  Future<List<sessionModel>> getAllSessionDetail() async {
+  Future<List<SessionModel>> getAllSessionDetail() async {
     final autodb = await instance.database;
     final List<Map<String, Object?>> allSessionData =
         await autodb.query('$sessionTable');
-    return allSessionData.map((e) => sessionModel.fromdatabaseJson(e)).toList();
+    return allSessionData.map((e) => SessionModel.fromdatabaseJson(e)).toList();
   }
 
   Future<List<DogModel>> getAllTransactions() async {

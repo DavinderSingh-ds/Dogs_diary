@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:dog_app/database/database.dart';
-import 'package:dog_app/model/dogs_table.dart';
-import 'package:dog_app/theme/light_colors.dart';
+import 'package:dog_app/Database/Database.dart';
+import 'package:dog_app/Database/DogsTable.dart';
+import 'package:dog_app/Themes/ThemeColors.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_speed_dial/simple_speed_dial.dart';
-import 'enter_detail.dart';
+import 'EnterDetail.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -58,7 +58,7 @@ class _DashboardState extends State<Dashboard> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: LightColors.kLightGreen,
+                color: ThemeColors.kLightGreen,
               ),
               child: Column(
                 children: [

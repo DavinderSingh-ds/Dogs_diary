@@ -1,19 +1,18 @@
-// ignore_for_file: camel_case_types
-
-class usersModel {
+class SessionModel {
   int? id;
   String userName;
   String userEmail;
   String userPassword;
   String confirmPassword;
-  usersModel({
+  SessionModel({
     this.id,
     required this.userName,
     required this.userEmail,
     required this.userPassword,
     required this.confirmPassword,
   });
-  factory usersModel.fromdatabaseJson(Map<String, dynamic> data) => usersModel(
+  factory SessionModel.fromdatabaseJson(Map<String, dynamic> data) =>
+      SessionModel(
         id: data['id'],
         userName: data['name'],
         userEmail: data['email'],
