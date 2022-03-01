@@ -27,15 +27,6 @@ class _EnterDetailState extends State<EnterDetail> {
 
   final _databaseProvider = Databaseprovider.instance;
 
-  DateTime selectedDate = DateTime.now();
-  var pickedDate;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

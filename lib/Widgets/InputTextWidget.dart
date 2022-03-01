@@ -23,10 +23,10 @@ class _InputTextWidgetState extends State<InputTextWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+      padding: const EdgeInsets.only(left: 16, right: 16),
       child: Container(
         child: Material(
-          elevation: 3.0,
+          elevation: 1.0,
           shadowColor: Colors.black,
           borderRadius: BorderRadius.circular(15.0),
           child: Padding(
@@ -41,15 +41,12 @@ class _InputTextWidgetState extends State<InputTextWidget> {
                 icon: Icon(
                   widget.icon,
                   color: Colors.black,
-                  size: 32.0,
+                  size: 24.0,
                 ),
                 labelText: widget.labelText,
-                labelStyle: TextStyle(color: Colors.black54, fontSize: 16.0),
+                labelStyle: TextStyle(color: Colors.black54, fontSize: 14.0),
                 hintText: '',
                 enabledBorder: InputBorder.none,
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black54),
-                ),
                 border: InputBorder.none,
               ),
               validator: (val) {

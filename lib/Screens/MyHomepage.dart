@@ -1,11 +1,9 @@
-import 'package:dog_app/Screens/LoginScreen.dart';
 import 'package:dog_app/Screens/Chatting.dart';
 import 'package:dog_app/Screens/Dashboard.dart';
 import 'package:dog_app/Screens/Feeds.dart';
 import 'package:dog_app/Screens/AvailableDogs.dart';
 import 'package:dog_app/Screens/Profile.dart';
 import 'package:flutter/material.dart';
-
 import 'package:diamond_bottom_bar/diamond_bottom_bar.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -42,15 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
               fontSize: 26,
               fontWeight: FontWeight.bold,
               color: Colors.deepPurple,
-            ),
-          ),
-          leading: InkWell(
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => LoginScreen(),
-            )),
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
             ),
           ),
           backgroundColor: Colors.grey[100],

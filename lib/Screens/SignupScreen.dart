@@ -1,10 +1,8 @@
 import 'dart:developer';
-
 import 'package:dog_app/Database/Database.dart';
 import 'package:dog_app/Database/SessionTable.dart';
 import 'package:dog_app/Database/UsersTable.dart';
 import 'package:dog_app/Widgets/InputTextWidget.dart';
-import 'package:dog_app/Screens/LoginScreen.dart';
 import 'package:dog_app/Screens/MyHomepage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -31,12 +29,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _databaseProviderr = Databaseprovider.instance;
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {});
-  }
-
-  @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
@@ -45,19 +37,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
         title: Text("Sign Up",
             style: TextStyle(
               color: Colors.black,
-              fontSize: 30,
+              fontSize: 18,
               shadows: [
                 Shadow(
                   color: const Color(0xba000000),
-                  offset: Offset(0, 3),
-                  blurRadius: 6,
+                  offset: Offset(0, 0),
+                  blurRadius: 3,
                 )
               ],
             )),
         leading: InkWell(
-          onTap: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          )),
+          onTap: () => Navigator.pop(context),
           child: Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -66,240 +56,199 @@ class _SignUpScreenState extends State<SignUpScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 15.0),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
             ),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3),
-              ),
-            ],
-          ),
-          width: screenWidth,
-          height: screenHeight,
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 30.0,
-                  ),
-                  Text(
-                    'Welcome to Our Home!!',
-                    style: TextStyle(
-                      fontFamily: 'Segoe UI',
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xff000000),
+            width: screenWidth,
+            height: screenHeight,
+            child: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
-                  InputTextWidget(
-                      controller: _namecontroller,
-                      labelText: "Name",
-                      icon: Icons.person,
-                      obscureText: false,
-                      keyboardType: TextInputType.text),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  InputTextWidget(
-                      controller: _emailController,
-                      labelText: "Enter Email",
-                      icon: Icons.email,
-                      obscureText: false,
-                      keyboardType: TextInputType.emailAddress),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-                    child: Container(
-                      child: Material(
-                        elevation: 3.0,
-                        shadowColor: Colors.black,
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(right: 20.0, left: 15.0),
-                          child: TextFormField(
-                              obscureText: true,
-                              textInputAction: TextInputAction.next,
-                              autofocus: false,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                icon: Icon(
-                                  Icons.lock,
-                                  color: Colors.black,
-                                  size: 32.0,
-                                ),
-                                labelText: "Enter password",
-                                labelStyle: TextStyle(
-                                    color: Colors.black54, fontSize: 18.0),
-                                hintText: '',
-                                enabledBorder: InputBorder.none,
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black54),
-                                ),
-                                border: InputBorder.none,
-                              ),
-                              controller: _pass,
-                              validator: (val) {
-                                if (val!.isEmpty) {
-                                  return 'type a password';
-                                } else if (val.length < 6) {
-                                  return 'password must be > 6 characters';
-                                }
-
-                                return null;
-                              }),
-                        ),
-                      ),
+                    InputTextWidget(
+                        controller: _namecontroller,
+                        labelText: "Name",
+                        icon: Icons.person,
+                        obscureText: false,
+                        keyboardType: TextInputType.text),
+                    SizedBox(
+                      height: 16.0,
                     ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-                    child: Container(
-                      child: Material(
-                        elevation: 3.0,
-                        shadowColor: Colors.black,
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(right: 20.0, left: 15.0),
-                          child: TextFormField(
-                              obscureText: true,
-                              textInputAction: TextInputAction.next,
-                              autofocus: false,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                icon: Icon(
-                                  Icons.lock,
-                                  color: Colors.black,
-                                  size: 32.0,
-                                ),
-                                labelText: "Confirm Password",
-                                labelStyle: TextStyle(
-                                    color: Colors.black54, fontSize: 18.0),
-                                hintText: '',
-                                enabledBorder: InputBorder.none,
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black54),
-                                ),
-                                border: InputBorder.none,
-                              ),
-                              controller: _confirmPass,
-                              validator: (val) {
-                                if (val!.isEmpty) return 'confirm Password!!';
-                                if (val != _pass.text)
-                                  return 'Incorrect Password';
-                                return null;
-                              }),
-                        ),
-                      ),
+                    InputTextWidget(
+                        controller: _emailController,
+                        labelText: "Enter Email",
+                        icon: Icons.email,
+                        obscureText: false,
+                        keyboardType: TextInputType.emailAddress),
+                    SizedBox(
+                      height: 16.0,
                     ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Container(
-                    height: 55.0,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        final FormState? formm = _formKey.currentState;
-                        if (formm!.validate()) {
-                          var userEmail = _emailController.text.toString();
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      child: Container(
+                        child: Material(
+                          elevation: 1.0,
+                          shadowColor: Colors.black,
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(right: 20.0, left: 15.0),
+                            child: TextFormField(
+                                obscureText: true,
+                                textInputAction: TextInputAction.next,
+                                autofocus: false,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  icon: Icon(
+                                    Icons.lock,
+                                    color: Colors.black,
+                                    size: 24.0,
+                                  ),
+                                  labelText: "Enter password",
+                                  labelStyle: TextStyle(
+                                      color: Colors.black54, fontSize: 14.0),
+                                  hintText: '',
+                                  enabledBorder: InputBorder.none,
+                                  border: InputBorder.none,
+                                ),
+                                controller: _pass,
+                                validator: (val) {
+                                  if (val!.isEmpty) {
+                                    return 'type a password';
+                                  } else if (val.length < 6) {
+                                    return 'password must be > 6 characters';
+                                  }
 
-                          final newexpensess = UsersModel(
-                            userEmail: userEmail,
-                            userPassword: _pass.text.toString(),
-                            confirmPassword: _confirmPass.text.toString(),
-                            userName: _namecontroller.text.toString(),
-                          );
-
-                          final autoExpensess = SessionModel(
-                            userEmail: userEmail,
-                            userPassword: _pass.text.toString(),
-                            confirmPassword: _confirmPass.text.toString(),
-                            userName: _namecontroller.text.toString(),
-                          );
-
-                          var existingUser = await _databaseProviderr
-                              .getUserByEmail(userEmail);
-                          log('existingUser: $existingUser');
-                          if (existingUser != Null) {
-                            Fluttertoast.showToast(
-                                msg:
-                                    "'$userEmail' is already taken. Please try another email.",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.BOTTOM,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.blue,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
-                            return;
-                          }
-                          await _databaseProviderr
-                              .addSignUpdetail(newexpensess);
-                          await _databaseProviderr
-                              .addSessionDetails(autoExpensess);
-
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  MyHomePage(title: 'Dogs_Diary'),
-                            ),
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        elevation: 0.0,
-                        minimumSize: Size(screenWidth, 150),
-                        padding: EdgeInsets.symmetric(horizontal: 30),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(0)),
-                        ),
-                      ),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                  color: Color(0xfff05945),
-                                  offset: const Offset(1.1, 1.1),
-                                  blurRadius: 10.0),
-                            ],
-                            color: Color(0xffF05945),
-                            borderRadius: BorderRadius.circular(12.0)),
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "Continue",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 25),
+                                  return null;
+                                }),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      child: Container(
+                        child: Material(
+                          elevation: 1.0,
+                          shadowColor: Colors.black,
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(right: 20.0, left: 15.0),
+                            child: TextFormField(
+                                obscureText: true,
+                                textInputAction: TextInputAction.done,
+                                autofocus: false,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  icon: Icon(
+                                    Icons.lock,
+                                    color: Colors.black,
+                                    size: 24.0,
+                                  ),
+                                  labelText: "Confirm Password",
+                                  labelStyle: TextStyle(
+                                      color: Colors.black54, fontSize: 14.0),
+                                  hintText: '',
+                                  enabledBorder: InputBorder.none,
+                                  border: InputBorder.none,
+                                ),
+                                controller: _confirmPass,
+                                validator: (val) {
+                                  if (val!.isEmpty) return 'confirm Password!!';
+                                  if (val != _pass.text)
+                                    return 'Incorrect Password';
+                                  return null;
+                                }),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 16, right: 16, top: 8),
+                      child: Container(
+                        height: 50.0,
+                        child: ElevatedButton(
+                          clipBehavior: Clip.antiAlias,
+                          onPressed: () async {
+                            final FormState? formm = _formKey.currentState;
+                            if (formm!.validate()) {
+                              var userEmail = _emailController.text.toString();
+
+                              final newexpensess = UsersModel(
+                                userEmail: userEmail,
+                                userPassword: _pass.text.toString(),
+                                confirmPassword: _confirmPass.text.toString(),
+                                userName: _namecontroller.text.toString(),
+                              );
+
+                              final autoExpensess = SessionModel(
+                                userEmail: userEmail,
+                                userPassword: _pass.text.toString(),
+                                confirmPassword: _confirmPass.text.toString(),
+                                userName: _namecontroller.text.toString(),
+                              );
+
+                              var existingUser = await _databaseProviderr
+                                  .getUserByEmail(userEmail);
+                              log('existingUser: $existingUser');
+                              if (existingUser != Null) {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        "'$userEmail' is already taken. Please try another email.",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.blue,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                return;
+                              }
+                              await _databaseProviderr
+                                  .addSignUpdetail(newexpensess);
+                              await _databaseProviderr
+                                  .addSessionDetails(autoExpensess);
+
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      MyHomePage(title: 'Dogs_Diary'),
+                                ),
+                              );
+                            }
+                          },
+                          child: Ink(
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Continue",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

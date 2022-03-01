@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:dog_app/Screens/LoginScreen.dart';
 import 'package:dog_app/Database/Database.dart';
 import 'package:dog_app/Screens/MyHomepage.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:progress_indicators/progress_indicators.dart';

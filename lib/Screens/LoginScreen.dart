@@ -75,20 +75,17 @@ class _SearchScreenState extends State<LoginScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final double r = (175 / 360);
     final coverHeight = screenWidth * r;
-    bool _pinned = false;
-    bool _snap = false;
-    bool _floating = false;
 
     final widgetList = [
       Row(
         children: [
           SizedBox(
-            width: 28,
+            width: 16,
           ),
           Text(
             'Welcome',
             style: TextStyle(
-              fontSize: 40,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: const Color(0xff000000),
             ),
@@ -97,7 +94,7 @@ class _SearchScreenState extends State<LoginScreen> {
         ],
       ),
       SizedBox(
-        height: 12.0,
+        height: 16.0,
       ),
       Form(
           key: _formKey,
@@ -111,16 +108,48 @@ class _SearchScreenState extends State<LoginScreen> {
                 keyboardType: TextInputType.emailAddress,
               ),
               SizedBox(
-                height: 12.0,
+                height: 16,
               ),
-              InputTextWidget(
-                  controller: _pwdController,
-                  labelText: "Password",
-                  icon: Icons.lock,
-                  obscureText: true,
-                  keyboardType: TextInputType.text),
               Padding(
-                padding: const EdgeInsets.only(right: 25.0, top: 10.0),
+                padding: const EdgeInsets.only(left: 16, right: 16),
+                child: Container(
+                  child: Material(
+                    elevation: 1.0,
+                    shadowColor: Colors.black,
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20.0, left: 15.0),
+                      child: TextFormField(
+                          obscureText: true,
+                          textInputAction: TextInputAction.done,
+                          autofocus: false,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            icon: Icon(
+                              Icons.lock,
+                              color: Colors.black,
+                              size: 24.0,
+                            ),
+                            labelText: "Enter password",
+                            labelStyle: TextStyle(
+                                color: Colors.black54, fontSize: 14.0),
+                            hintText: '',
+                            enabledBorder: InputBorder.none,
+                            border: InputBorder.none,
+                          ),
+                          controller: _pwdController,
+                          validator: (val) {
+                            if (val!.isEmpty) {
+                              return 'type a password';
+                            }
+                            return null;
+                          }),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 16, top: 16),
                 child: Align(
                     alignment: Alignment.topRight,
                     child: Material(
@@ -130,7 +159,7 @@ class _SearchScreenState extends State<LoginScreen> {
                         child: Text(
                           "Forgot password?",
                           style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: Colors.grey[700]),
                         ),
@@ -138,10 +167,10 @@ class _SearchScreenState extends State<LoginScreen> {
                     )),
               ),
               SizedBox(
-                height: 15.0,
+                height: 16,
               ),
               Container(
-                height: 55.0,
+                height: 50.0,
                 child: ElevatedButton(
                   onPressed: () async {
                     final FormState? formm =
@@ -154,30 +183,22 @@ class _SearchScreenState extends State<LoginScreen> {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0.0,
-                    minimumSize: Size(screenWidth, 150),
-                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    padding: EdgeInsets.symmetric(horizontal: 16),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(0)),
                     ),
                   ),
                   child: Ink(
                     decoration: BoxDecoration(
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                              color: Colors.red,
-                              offset: const Offset(1.1, 1.1),
-                              blurRadius: 10.0),
-                        ],
-                        color: Colors.red, // Color(0xffF05945),
-                        borderRadius: BorderRadius.circular(12.0)),
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(10.0)),
                     child: Container(
                       alignment: Alignment.center,
                       child: Text(
                         "Sign in",
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 18,
                           color: Colors.white,
-                          fontFamily: 'Times New Roman',
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -188,12 +209,40 @@ class _SearchScreenState extends State<LoginScreen> {
             ],
           )),
       SizedBox(
-        height: 15.0,
+        height: 16,
       ),
-      Wrap(
+      Container(
+        height: 50.0,
+        child: Center(
+            child: Wrap(
+          children: [
+            Text(
+              "Don't have an account? ",
+              style: TextStyle(
+                  color: Colors.grey[600], fontWeight: FontWeight.bold),
+            ),
+            Material(
+                child: InkWell(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SignUpScreen(),
+              )),
+              child: Text(
+                "Sign Up",
+                style: TextStyle(
+                  color: Colors.blue[800],
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+            )),
+          ],
+        )),
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 30.0, right: 10.0, top: 15.0),
+            padding: const EdgeInsets.only(left: 16, top: 16),
             child: Container(
               decoration: BoxDecoration(
                   boxShadow: <BoxShadow>[
@@ -227,7 +276,6 @@ class _SearchScreenState extends State<LoginScreen> {
                           "Sign in",
                           style: TextStyle(
                             color: Colors.blue,
-                            fontFamily: 'Times New Roman',
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -239,12 +287,12 @@ class _SearchScreenState extends State<LoginScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 30.0, top: 15.0),
+            padding: const EdgeInsets.only(right: 16, top: 16),
             child: Container(
               decoration: BoxDecoration(
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        color: Colors.grey, //Color(0xfff05945),
+                        color: Colors.grey,
                         offset: const Offset(0, 0),
                         blurRadius: 5.0),
                   ],
@@ -273,7 +321,6 @@ class _SearchScreenState extends State<LoginScreen> {
                           "Sign in",
                           style: TextStyle(
                             color: Colors.red,
-                            fontFamily: 'Times New Roman',
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -293,20 +340,14 @@ class _SearchScreenState extends State<LoginScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            pinned: _pinned,
-            snap: _snap,
-            floating: _floating,
-            expandedHeight: coverHeight - 25, //304,
-            backgroundColor: Color(0xFFdccdb4),
+            expandedHeight: coverHeight - 25,
             flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
               background: Image.asset(
                 "images/covver.jpg",
                 fit: BoxFit.cover,
@@ -314,29 +355,15 @@ class _SearchScreenState extends State<LoginScreen> {
             ),
           ),
           SliverToBoxAdapter(
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(),
-                  gradient: LinearGradient(
-                      colors: <Color>[Color(0xFFdccdb4), Color(0xFFd8c3ab)])),
-              width: screenWidth,
-              height: 25,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Container(
-                    width: screenWidth,
-                    height: 25,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: const Radius.circular(30.0),
-                        topRight: const Radius.circular(30.0),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  width: screenWidth,
+                  height: 25,
+                  color: Colors.grey[100],
+                ),
+              ],
             ),
           ),
           SliverList(
@@ -344,39 +371,6 @@ class _SearchScreenState extends State<LoginScreen> {
                   SliverChildBuilderDelegate((BuildContext context, int index) {
             return widgetList[index];
           }, childCount: widgetList.length))
-        ],
-      ),
-      bottomNavigationBar: Stack(
-        children: [
-          Container(
-            height: 50.0,
-            margin: const EdgeInsets.only(bottom: 50.0),
-            color: Colors.white,
-            child: Center(
-                child: Wrap(
-              children: [
-                Text(
-                  "Don't have an account? ",
-                  style: TextStyle(
-                      color: Colors.grey[600], fontWeight: FontWeight.bold),
-                ),
-                Material(
-                    child: InkWell(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SignUpScreen(),
-                  )),
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                      color: Colors.blue[800],
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
-              ],
-            )),
-          ),
         ],
       ),
     );
