@@ -42,7 +42,7 @@ dev_dependencies:
 flutter_icons:
   android: 'launcher_icon'
   ios: true
-  image_path: 'images/iicon.jpg'
+  image_path: 'images/profile.jpg'
 # The following section is specific to Flutter.
 flutter:
 
