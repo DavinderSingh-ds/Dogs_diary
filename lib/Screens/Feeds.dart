@@ -152,7 +152,7 @@ topWidget() {
           ),
           Text(
             'A Dog',
-            style: TextStyle(color: Colors.white, fontSize: 18),
+            style: TextStyle(color: Colors.white, fontSize: 14),
           ),
           SizedBox(
             height: 5,

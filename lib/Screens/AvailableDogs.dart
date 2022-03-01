@@ -47,7 +47,7 @@ class _AvailableDogsState extends State<AvailableDogs> {
                     '👀 Dogs Collection 🐕',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 23,
+                      fontSize: 2,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

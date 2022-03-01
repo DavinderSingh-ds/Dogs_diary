@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(
             "Dogs Diary 🐩",
             style: TextStyle(
-              fontSize: 26,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.deepPurple,
             ),

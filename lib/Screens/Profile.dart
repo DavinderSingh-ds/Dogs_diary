@@ -59,7 +59,7 @@ class _ProfileState extends State<Profile> {
         elevation: 0,
         title: Text(
           'Profile',
-          style: TextStyle(color: Colors.black87),
+          style: TextStyle(color: Colors.black87, fontSize: 16),
         ),
         leading: Icon(
           Icons.menu,
@@ -143,7 +143,7 @@ class _ProfileState extends State<Profile> {
                                             '${dogModel.userName}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15,
+                                              fontSize: 14,
                                             ),
                                           ),
                                         ],

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dog_app/Database/Database.dart';
 import 'package:dog_app/Database/DogsTable.dart';
 import 'package:flutter/material.dart';
@@ -31,13 +33,15 @@ class _EnterDetailState extends State<EnterDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dog Detail'),
+        title: Text(
+          'Dog Detail',
+          style: TextStyle(fontSize: 18),
+        ),
       ),
       body: ListView(
         children: [
           Padding(
-            padding:
-                const EdgeInsets.only(top: 20, right: 10, left: 10, bottom: 10),
+            padding: const EdgeInsets.only(top: 20, right: 4, left: 4),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -54,20 +58,11 @@ class _EnterDetailState extends State<EnterDetail> {
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 25,
-                      bottom: 10,
                     ),
                     child: Text(
                       'ADD DETAIL OF DOG',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Times New Roman',
-                        shadows: [
-                          Shadow(
-                            blurRadius: 1,
-                          ),
-                        ],
-                      ),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Form(
@@ -79,7 +74,8 @@ class _EnterDetailState extends State<EnterDetail> {
                           height: 2,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              top: 8, left: 14, right: 14),
                           child: TextFormField(
                             controller: _nameController,
                             textInputAction: TextInputAction.next,
@@ -97,7 +93,8 @@ class _EnterDetailState extends State<EnterDetail> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              top: 16, left: 14, right: 14),
                           child: TextFormField(
                             controller: _colorController,
                             textInputAction: TextInputAction.next,
@@ -115,7 +112,8 @@ class _EnterDetailState extends State<EnterDetail> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              top: 16, left: 14, right: 14),
                           child: TextFormField(
                             controller: _amountController,
                             textInputAction: TextInputAction.next,
@@ -134,7 +132,8 @@ class _EnterDetailState extends State<EnterDetail> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              top: 16, left: 14, right: 14),
                           child: TextFormField(
                             controller: _descriptionController,
                             textInputAction: TextInputAction.next,
@@ -152,16 +151,11 @@ class _EnterDetailState extends State<EnterDetail> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              top: 16, left: 14, right: 14),
                           child: TextFormField(
                             controller: _dateController,
-                            textInputAction: TextInputAction.next,
-                            validator: (des) {
-                              if (des!.isEmpty) {
-                                return 'Enter extra description please';
-                              }
-                              return null;
-                            },
+                            textInputAction: TextInputAction.done,
                             decoration: InputDecoration(
                               labelText: 'Description',
                               hintText: 'Enter extra info of Dog',
@@ -170,16 +164,18 @@ class _EnterDetailState extends State<EnterDetail> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              top: 24, left: 14, right: 14),
                           child: MaterialButton(
                             color: Colors.blue,
+                            height: 45,
                             child: Text(
                               widget.buttonName != null
                                   ? widget.buttonName!
                                   : 'Save',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 19,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold),
                             ),
                             onPressed: () {
@@ -215,7 +211,7 @@ class _EnterDetailState extends State<EnterDetail> {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                       ],
                     ),

@@ -96,7 +96,7 @@ class _DashboardState extends State<Dashboard> {
                             '👀 See Available Dogs 🐕',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 23,
+                              fontSize: 2,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -151,8 +151,6 @@ class _DashboardState extends State<Dashboard> {
                                                       fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontFamily:
-                                                          'Times New Roman',
                                                     ),
                                                   ),
                                                 ),
@@ -170,10 +168,8 @@ class _DashboardState extends State<Dashboard> {
                                                 child: Text(
                                                   'Dog Breed  : ${dogModel.dogBreed}',
                                                   style: TextStyle(
-                                                    fontSize: 13,
+                                                    fontSize: 14,
                                                     fontWeight: FontWeight.bold,
-                                                    fontFamily:
-                                                        'Times New Roman',
                                                   ),
                                                 ),
                                               ),
@@ -196,9 +192,8 @@ class _DashboardState extends State<Dashboard> {
                                               Text(
                                                 'Dog Color   : ${dogModel.dogColor}',
                                                 style: TextStyle(
-                                                  fontSize: 13,
+                                                  fontSize: 14,
                                                   fontWeight: FontWeight.bold,
-                                                  fontFamily: 'Times New Roman',
                                                 ),
                                               ),
                                             ],
@@ -217,11 +212,9 @@ class _DashboardState extends State<Dashboard> {
                                                 child: Text(
                                                   dogModel.date,
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.black,
-                                                    fontFamily:
-                                                        'Times New Roman',
                                                   ),
                                                 ),
                                               ),
@@ -331,9 +324,6 @@ class _DashboardState extends State<Dashboard> {
             height: 75,
             child: Stack(
               children: [
-                // Container(
-                //   color: Colors.white,
-                // ),
                 Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
@@ -355,7 +345,8 @@ class _DashboardState extends State<Dashboard> {
                             child: Text(
                               'Add Dog Detail',
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             onPressed: () {
