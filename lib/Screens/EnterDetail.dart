@@ -87,7 +87,9 @@ class _EnterDetailState extends State<EnterDetail> {
                             },
                             decoration: InputDecoration(
                               labelText: 'Dog Name',
+                              labelStyle: TextStyle(fontSize: 14),
                               hintText: 'Enter Name Of Dog',
+                              hintStyle: TextStyle(fontSize: 14),
                               icon: Icon(Icons.pets_rounded),
                             ),
                           ),
@@ -106,7 +108,9 @@ class _EnterDetailState extends State<EnterDetail> {
                             },
                             decoration: InputDecoration(
                               labelText: 'Dog Color',
+                              labelStyle: TextStyle(fontSize: 14),
                               hintText: 'Enter Color Of Dog',
+                              hintStyle: TextStyle(fontSize: 14),
                               icon: Icon(Icons.color_lens),
                             ),
                           ),
@@ -126,7 +130,9 @@ class _EnterDetailState extends State<EnterDetail> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               labelText: 'Dog Age',
+                              labelStyle: TextStyle(fontSize: 14),
                               hintText: 'Enter the Age of Dog',
+                              hintStyle: TextStyle(fontSize: 14),
                               icon: Icon(Icons.add_reaction),
                             ),
                           ),
@@ -145,7 +151,9 @@ class _EnterDetailState extends State<EnterDetail> {
                             },
                             decoration: InputDecoration(
                               labelText: 'Dog Breed',
+                              labelStyle: TextStyle(fontSize: 14),
                               hintText: 'Enter Breed of Dog',
+                              hintStyle: TextStyle(fontSize: 14),
                               icon: Icon(Icons.whatshot_rounded),
                             ),
                           ),
@@ -158,7 +166,9 @@ class _EnterDetailState extends State<EnterDetail> {
                             textInputAction: TextInputAction.done,
                             decoration: InputDecoration(
                               labelText: 'Description',
+                              labelStyle: TextStyle(fontSize: 14),
                               hintText: 'Enter extra info of Dog',
+                              hintStyle: TextStyle(fontSize: 14),
                               icon: Icon(Icons.description),
                             ),
                           ),
