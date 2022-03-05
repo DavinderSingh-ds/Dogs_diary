@@ -32,6 +32,9 @@ dependencies:
   path_provider: ^2.0.2
   provider: ^6.0.0
   flutter_slimy_card : ^1.0.2
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
   
 dev_dependencies:
   flutter_test:
@@ -45,10 +48,7 @@ flutter_icons:
   image_path: 'images/profile.jpg'
 # The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
+  generate: true
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

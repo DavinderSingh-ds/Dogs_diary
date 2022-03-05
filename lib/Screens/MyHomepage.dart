@@ -5,6 +5,7 @@ import 'package:dog_app/Screens/AvailableDogs.dart';
 import 'package:dog_app/Screens/Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:diamond_bottom_bar/diamond_bottom_bar.dart';
+import '../Widgets/Language_picker_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required String title}) : super(key: key);
@@ -15,6 +16,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+  int index = 0;
   late Widget _selectedWidget;
 
   @override
@@ -44,6 +46,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           backgroundColor: Colors.grey[100],
           elevation: 0.0,
+          actions: [
+            LanguagePickerWidget(),
+            const SizedBox(width: 12),
+          ],
         ),
         body: _selectedWidget,
         bottomNavigationBar: DiamondBottomNavigation(
@@ -71,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
       } else if (index == 2) {
         _selectedWidget = const Feeds();
       } else if (index == 3) {
-        _selectedWidget = const MessageBox();
+        _selectedWidget = MessageBox();
       } else if (index == 4) {
         _selectedWidget = const Profile();
       }

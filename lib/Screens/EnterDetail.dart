@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:dog_app/Database/Database.dart';
 import 'package:dog_app/Database/DogsTable.dart';
 import 'package:flutter/material.dart';

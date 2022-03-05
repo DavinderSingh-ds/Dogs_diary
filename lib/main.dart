@@ -5,7 +5,13 @@ import 'package:dog_app/Database/Database.dart';
 import 'package:dog_app/Screens/MyHomepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:progress_indicators/progress_indicators.dart';
+import 'package:provider/provider.dart';
+import 'Provider/LocaleProvider.dart';
+import 'Widgets/Language_picker_widget.dart';
+import 'l10n/l10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -22,16 +28,30 @@ void main() {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dogs_Diary',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: SplashhScreen(),
-    );
-  }
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+        create: (context) => LocaleProvider(),
+        builder: (context, child) {
+          final provider = Provider.of<LocaleProvider>(context);
+
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Dogs_Diary',
+            theme: ThemeData(
+              scaffoldBackgroundColor: Color.fromARGB(255, 53, 135, 243),
+              primaryColor: Colors.amber,
+            ),
+            locale: provider.locale,
+            supportedLocales: L10n.all,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            home: SplashhScreen(),
+          );
+        },
+      );
 }
 
 class SplashhScreen extends StatefulWidget {
@@ -76,6 +96,22 @@ class _SplashhScreenState extends State<SplashhScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Dogs Diary 🐩",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.deepPurple,
+          ),
+        ),
+        backgroundColor: Colors.grey[100],
+        elevation: 0.0,
+        actions: [
+          LanguagePickerWidget(),
+          const SizedBox(width: 12),
+        ],
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -89,7 +125,7 @@ class _SplashhScreenState extends State<SplashhScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Welcome',
+                  AppLocalizations.of(context)!.hello('Davinder Singh'),
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
